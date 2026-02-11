@@ -1,0 +1,9 @@
+{
+    "best_model": "Random Forest",
+    "best_roc_auc": 0.7117,
+    "training_method": "SMOTE (Synthetic Minority Over-sampling)",
+    "training_samples": 3222,
+    "validation_samples": 482,
+    "feature_count": 32,
+    "meets_requirement": false
+}
