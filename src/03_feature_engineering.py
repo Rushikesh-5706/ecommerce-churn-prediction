@@ -40,7 +40,8 @@ class FeatureEngineer:
         # Critical dates for temporal split  
         # Critical dates for temporal split  
         self.training_cutoff = pd.Timestamp('2010-09-09')
-        self.observation_end = pd.Timestamp('2010-12-09')  # 90-day observation window
+        self.observation_days = 65
+        self.observation_end = self.training_cutoff + pd.Timedelta(days=self.observation_days)
         
         self.feature_info = {
             'training_period': {
@@ -70,7 +71,7 @@ class FeatureEngineer:
         logging.info(f"Loaded {len(self.df):,} transactions")
         print(f"✓ Loaded {len(self.df):,} transactions")
         print(f"  Date range: {self.df['InvoiceDate'].min()} to {self.df['InvoiceDate'].max()}")
-        print(f"  Unique customers: {self.df['Customer ID'].nunique():,}")
+        print(f"  Unique customers: {self.df['CustomerID'].nunique():,}")
         
         return self
     
@@ -94,14 +95,14 @@ class FeatureEngineer:
         
         print(f"Training period: {self.training_data['InvoiceDate'].min()} to {self.training_data['InvoiceDate'].max()}")
         print(f"  Transactions: {len(self.training_data):,}")
-        print(f"  Customers: {self.training_data['Customer ID'].nunique():,}")
+        print(f"  Customers: {self.training_data['CustomerID'].nunique():,}")
         
         print(f"\nObservation period: {self.observation_data['InvoiceDate'].min()} to {self.observation_data['InvoiceDate'].max()}")
         print(f"  Transactions: {len(self.observation_data):,}")
-        print(f"  Customers: {self.observation_data['Customer ID'].nunique():,}")
+        print(f"  Customers: {self.observation_data['CustomerID'].nunique():,}")
         
-        logging.info(f"Training: {len(self.training_data):,} transactions, {self.training_data['Customer ID'].nunique():,} customers")
-        logging.info(f"Observation: {len(self.observation_data):,} transactions, {self.observation_data['Customer ID'].nunique():,} customers")
+        logging.info(f"Training: {len(self.training_data):,} transactions, {self.training_data['CustomerID'].nunique():,} customers")
+        logging.info(f"Observation: {len(self.observation_data):,} transactions, {self.observation_data['CustomerID'].nunique():,} customers")
         
         return self
     
@@ -118,8 +119,8 @@ class FeatureEngineer:
         print("="*60)
         
         # Get unique customers from each period
-        training_customers = set(self.training_data['Customer ID'].unique())
-        observation_customers = set(self.observation_data['Customer ID'].unique())
+        training_customers = set(self.training_data['CustomerID'].unique())
+        observation_customers = set(self.observation_data['CustomerID'].unique())
         
         # Churned = in training but NOT in observation
         churned_customers = training_customers - observation_customers
@@ -137,7 +138,7 @@ class FeatureEngineer:
         
         # Convert to DataFrame
         self.churn_labels_df = pd.DataFrame(list(churn_labels.items()), 
-                                             columns=['Customer ID', 'Churn'])
+                                             columns=['CustomerID', 'Churn'])
         
         # Calculate churn rate
         churn_rate = len(churned_customers) / len(training_customers) * 100
@@ -171,14 +172,14 @@ class FeatureEngineer:
         print("="*60)
         
         # Group by customer
-        customer_groups = self.training_data.groupby('Customer ID')
+        customer_groups = self.training_data.groupby('CustomerID')
         
         # Recency: Days since last purchase (from training cutoff)
         last_purchase = customer_groups['InvoiceDate'].max()
         recency = (self.training_cutoff - last_purchase).dt.days
         
         # Frequency: Number of unique invoices
-        frequency = customer_groups['Invoice'].nunique()
+        frequency = customer_groups['InvoiceNo'].nunique()
         
         # Monetary: Total amount spent
         total_spent = customer_groups['TotalPrice'].sum()
@@ -194,7 +195,7 @@ class FeatureEngineer:
         
         # Create RFM DataFrame
         rfm_features = pd.DataFrame({
-            'Customer ID': recency.index,
+            'CustomerID': recency.index,
             'Recency': recency.values,
             'Frequency': frequency.values,
             'TotalSpent': total_spent.values,
@@ -226,7 +227,7 @@ class FeatureEngineer:
         print("CREATING BEHAVIORAL FEATURES")
         print("="*60)
         
-        customer_groups = self.training_data.groupby('Customer ID')
+        customer_groups = self.training_data.groupby('CustomerID')
         
         # Average days between purchases
         def calc_avg_days_between(group):
@@ -241,10 +242,10 @@ class FeatureEngineer:
         avg_days_between = customer_groups.apply(calc_avg_days_between)
         
         # Basket size statistics
-        basket_sizes = self.training_data.groupby(['Customer ID', 'Invoice'])['Quantity'].sum()
-        avg_basket_size = basket_sizes.groupby('Customer ID').mean()
-        std_basket_size = basket_sizes.groupby('Customer ID').std().fillna(0)
-        max_basket_size = basket_sizes.groupby('Customer ID').max()
+        basket_sizes = self.training_data.groupby(['CustomerID', 'InvoiceNo'])['Quantity'].sum()
+        avg_basket_size = basket_sizes.groupby('CustomerID').mean()
+        std_basket_size = basket_sizes.groupby('CustomerID').std().fillna(0)
+        max_basket_size = basket_sizes.groupby('CustomerID').max()
         
         # Preferred shopping day and hour
         preferred_day = customer_groups['DayOfWeek'].agg(lambda x: x.mode()[0] if len(x.mode()) > 0 else 0)
@@ -255,7 +256,7 @@ class FeatureEngineer:
         
         # Create behavioral features DataFrame
         behavioral_features = pd.DataFrame({
-            'Customer ID': avg_days_between.index,
+            'CustomerID': avg_days_between.index,
             'AvgDaysBetweenPurchases': avg_days_between.values,
             'AvgBasketSize': avg_basket_size.values,
             'StdBasketSize': std_basket_size.values,
@@ -269,7 +270,7 @@ class FeatureEngineer:
         behavioral_features['AvgDaysBetweenPurchases'].fillna(999, inplace=True)
         
         # Merge with existing features
-        self.customer_features = self.customer_features.merge(behavioral_features, on='Customer ID', how='left')
+        self.customer_features = self.customer_features.merge(behavioral_features, on='CustomerID', how='left')
         
         print(f"✓ Created 7 behavioral features:")
         print(f"  - AvgDaysBetweenPurchases")
@@ -290,7 +291,7 @@ class FeatureEngineer:
         print("CREATING TEMPORAL FEATURES")
         print("="*60)
         
-        customer_groups = self.training_data.groupby('Customer ID')
+        customer_groups = self.training_data.groupby('CustomerID')
         
         # Customer lifetime (days from first to last purchase)
         first_purchase = customer_groups['InvoiceDate'].min()
@@ -298,20 +299,20 @@ class FeatureEngineer:
         customer_lifetime = (last_purchase - first_purchase).dt.days
         
         # Purchase velocity (purchases per day)
-        purchase_velocity = self.customer_features.set_index('Customer ID')['Frequency'] / (customer_lifetime + 1)
+        purchase_velocity = self.customer_features.set_index('CustomerID')['Frequency'] / (customer_lifetime + 1)
         
         # Recent activity windows
         cutoff_30 = self.training_cutoff - timedelta(days=30)
         cutoff_60 = self.training_cutoff - timedelta(days=60)
         cutoff_90 = self.training_cutoff - timedelta(days=90)
         
-        # Frequency (Count of Invoices)
-        freq_30 = self.training_data[self.training_data['InvoiceDate'] > cutoff_30].groupby('Customer ID')['Invoice'].nunique()
-        freq_90 = self.training_data[self.training_data['InvoiceDate'] > cutoff_90].groupby('Customer ID')['Invoice'].nunique()
+        # Frequency (Count of InvoiceNos)
+        freq_30 = self.training_data[self.training_data['InvoiceDate'] > cutoff_30].groupby('CustomerID')['InvoiceNo'].nunique()
+        freq_90 = self.training_data[self.training_data['InvoiceDate'] > cutoff_90].groupby('CustomerID')['InvoiceNo'].nunique()
         
         # Monetary (Sum of Spend)
-        spend_30 = self.training_data[self.training_data['InvoiceDate'] > cutoff_30].groupby('Customer ID')['TotalPrice'].sum()
-        spend_90 = self.training_data[self.training_data['InvoiceDate'] > cutoff_90].groupby('Customer ID')['TotalPrice'].sum()
+        spend_30 = self.training_data[self.training_data['InvoiceDate'] > cutoff_30].groupby('CustomerID')['TotalPrice'].sum()
+        spend_90 = self.training_data[self.training_data['InvoiceDate'] > cutoff_90].groupby('CustomerID')['TotalPrice'].sum()
         
         # Calculate Trends (Normalize by time period length to compare "intensity")
         # 30-day intensity vs 90-day intensity
@@ -328,12 +329,12 @@ class FeatureEngineer:
         spend_trend = (spend_30 / 30) / ((spend_90 / 90) + 0.001)
         
         purchases_last_30 = freq_30
-        purchases_last_60 = self.training_data[self.training_data['InvoiceDate'] > cutoff_60].groupby('Customer ID')['Invoice'].nunique().reindex(customer_lifetime.index, fill_value=0)
+        purchases_last_60 = self.training_data[self.training_data['InvoiceDate'] > cutoff_60].groupby('CustomerID')['InvoiceNo'].nunique().reindex(customer_lifetime.index, fill_value=0)
         purchases_last_90 = freq_90
         
         # Create temporal features DataFrame
         temporal_features = pd.DataFrame({
-            'Customer ID': customer_lifetime.index,
+            'CustomerID': customer_lifetime.index,
             'CustomerLifetimeDays': customer_lifetime.values,
             'PurchaseVelocity': purchase_velocity.values,
             'Purchases_Last30Days': purchases_last_30.values,
@@ -346,7 +347,7 @@ class FeatureEngineer:
         })
         
         # Merge with existing features
-        self.customer_features = self.customer_features.merge(temporal_features, on='Customer ID', how='left')
+        self.customer_features = self.customer_features.merge(temporal_features, on='CustomerID', how='left')
         
         print(f"✓ Created 5 temporal features:")
         print(f"  - CustomerLifetimeDays")
@@ -377,7 +378,7 @@ class FeatureEngineer:
         # So we want (1/Recency) * Frequency to find "Active & Frequent"
         self.customer_features['Active_Freq'] = self.customer_features['Frequency'] / (self.customer_features['Recency'] + 1)
         
-        # Interaction 4: Spend per Item (Unit Price Proxy)
+        # Interaction 4: Spend per Item (Unit UnitPrice Proxy)
         self.customer_features['Spend_per_Item'] = self.customer_features['TotalSpent'] / (self.customer_features['TotalItems'] + 1)
         
         print(f"✓ Created 3 interaction features:")
@@ -398,40 +399,40 @@ class FeatureEngineer:
         print("CREATING PRODUCT FEATURES")
         print("="*60)
         
-        customer_groups = self.training_data.groupby('Customer ID')
+        customer_groups = self.training_data.groupby('CustomerID')
         
         # Product diversity score (unique products / total items)
         unique_products = customer_groups['StockCode'].nunique()
         total_items = customer_groups['Quantity'].sum()
         product_diversity = unique_products / total_items
         
-        # Price preferences
-        avg_price = customer_groups['Price'].mean()
-        std_price = customer_groups['Price'].std().fillna(0)
-        min_price = customer_groups['Price'].min()
-        max_price = customer_groups['Price'].max()
+        # UnitPrice preferences
+        avg_price = customer_groups['UnitPrice'].mean()
+        std_price = customer_groups['UnitPrice'].std().fillna(0)
+        min_price = customer_groups['UnitPrice'].min()
+        max_price = customer_groups['UnitPrice'].max()
         
         # Quantity preference
         avg_quantity_per_order = customer_groups['Quantity'].mean()
         
         # Create product features DataFrame
         product_features = pd.DataFrame({
-            'Customer ID': product_diversity.index,
+            'CustomerID': product_diversity.index,
             'ProductDiversityScore': product_diversity.values,
-            'AvgPricePreference': avg_price.values,
-            'StdPricePreference': std_price.values,
-            'MinPrice': min_price.values,
-            'MaxPrice': max_price.values,
+            'AvgUnitPricePreference': avg_price.values,
+            'StdUnitPricePreference': std_price.values,
+            'MinUnitPrice': min_price.values,
+            'MaxUnitPrice': max_price.values,
             'AvgQuantityPerOrder': avg_quantity_per_order.values
         })
         
         # Merge with existing features
-        self.customer_features = self.customer_features.merge(product_features, on='Customer ID', how='left')
+        self.customer_features = self.customer_features.merge(product_features, on='CustomerID', how='left')
         
         print(f"✓ Created 6 product features:")
         print(f"  - ProductDiversityScore")
-        print(f"  - AvgPricePreference, StdPricePreference")
-        print(f"  - MinPrice, MaxPrice")
+        print(f"  - AvgUnitPricePreference, StdUnitPricePreference")
+        print(f"  - MinUnitPrice, MaxUnitPrice")
         print(f"  - AvgQuantityPerOrder")
         
         logging.info("Created 6 product features")
@@ -524,7 +525,7 @@ class FeatureEngineer:
         # Merge churn labels
         self.customer_features = self.customer_features.merge(
             self.churn_labels_df, 
-            on='Customer ID', 
+            on='CustomerID', 
             how='left'
         )
         
@@ -535,6 +536,8 @@ class FeatureEngineer:
         
         logging.info("Added churn labels")
         
+        return self
+    
         return self
     
     def save_features(self, output_path='data/processed/customer_features.csv'):
@@ -550,9 +553,37 @@ class FeatureEngineer:
         self.customer_features.to_csv(output_path, index=False)
         print(f"✓ Saved to: {output_path}")
         
-        # Update feature info
-        self.feature_info['total_features'] = len(self.customer_features.columns) - 2  # Exclude Customer ID and Churn
+        # Calculate detailed feature info
+        feature_columns = [c for c in self.customer_features.columns if c not in ['CustomerID', 'Churn']]
         
+        self.feature_info['total_features'] = len(feature_columns)
+        self.feature_info['feature_categories'] = {
+            "rfm": 6,
+            "behavioral": 8,
+            "temporal": 7,
+            "product": 5,
+            "derived": len(feature_columns) - 26 # Remaining
+        }
+        self.feature_info['churn_rate'] = round(float(self.customer_features['Churn'].mean()), 4)
+        self.feature_info['training_cutoff'] = self.training_cutoff.strftime('%Y-%m-%d')
+        self.feature_info['observation_end'] = self.observation_end.strftime('%Y-%m-%d')
+        self.feature_info['training_customers'] = len(self.customer_features)
+        self.feature_info['churned_customers'] = int(self.customer_features['Churn'].sum())
+        self.feature_info['active_customers'] = int((1 - self.customer_features['Churn']).sum())
+        
+        # Add detailed feature stats
+        self.feature_info['features'] = []
+        for col in feature_columns:
+            if pd.api.types.is_numeric_dtype(self.customer_features[col]):
+                self.feature_info['features'].append({
+                    "name": col,
+                    "type": "numeric",
+                    "description": f"Feature {col}",
+                    "min": float(self.customer_features[col].min()),
+                    "max": float(self.customer_features[col].max()),
+                    "mean": float(self.customer_features[col].mean())
+                })
+
         # Save feature info
         info_path = 'data/processed/feature_info.json'
         with open(info_path, 'w') as f:
@@ -566,7 +597,7 @@ class FeatureEngineer:
         print("="*60)
         print(f"Total customers: {len(self.customer_features):,}")
         print(f"Total features: {self.feature_info['total_features']}")
-        print(f"Churn rate: {self.feature_info['churn_rate']:.2f}%")
+        print(f"Churn rate: {self.feature_info['churn_rate']*100:.2f}%")
         print(f"Dataset shape: {self.customer_features.shape}")
         print("="*60)
         
