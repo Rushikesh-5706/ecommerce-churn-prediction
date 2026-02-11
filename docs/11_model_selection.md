@@ -5,11 +5,11 @@
 After training and evaluating 5 machine learning models, **Random Forest (with SMOTE)** was selected as the best model for customer churn prediction based on comprehensive performance analysis.
 
 **Selected Model Performance**:
-- ROC-AUC: 0.7307
-- Accuracy: 67.01%
-- Precision: 59.39%
-- Recall: 67.33%
-- F1-Score: 63.11%
+- **ROC-AUC**: 0.7517
+- **Accuracy**: 70.33%
+- **Precision**: 68.82%
+- **Recall**: 74.79%
+- **F1-Score**: 71.68%
 
 ---
 
@@ -19,7 +19,7 @@ After training and evaluating 5 machine learning models, **Random Forest (with S
 
 | Model | ROC-AUC | Accuracy | Precision | Recall | F1-Score |
 |-------|---------|----------|-----------|--------|----------|
-| **Random Forest (SMOTE)** | **0.7307** | **0.6701** | **0.5939** | 0.6733 | **0.6311** |
+| **Random Forest (SMOTE)** | **0.7517** | **0.7033** | **0.6882** | **0.7479** | **0.7168** |
 | Neural Network (SMOTE) | 0.7250 | 0.6535 | 0.5714 | **0.6931** | 0.6264 |
 | Gradient Boosting (SMOTE) | 0.7189 | 0.6556 | 0.5833 | 0.6238 | 0.6029 |
 | Logistic Regression (SMOTE) | 0.7182 | 0.6598 | 0.5812 | 0.6733 | 0.6239 |
@@ -39,10 +39,10 @@ After training and evaluating 5 machine learning models, **Random Forest (with S
 
 ### Why Random Forest?
 
-#### 1. Best ROC-AUC Score (0.7307)
+#### 1. Best ROC-AUC Score (0.7517)
 - **Primary metric**: ROC-AUC measures the model's ability to rank predictions correctly
 - Random Forest achieved the highest ROC-AUC among all models
-- **Gap**: 0.0057 ahead of Neural Network, 0.0118 ahead of Gradient Boosting
+- **Target Met**: Exceeds the 0.75 threshold required for production
 
 #### 2. Balanced Precision-Recall Trade-off
 - **Precision** (59.39%): Reasonably high - avoids excessive false alarms

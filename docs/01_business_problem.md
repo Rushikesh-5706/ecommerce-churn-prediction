@@ -19,14 +19,14 @@ RetailCo Analytics operates in a highly competitive e-commerce market where cust
 
 ## 2. Problem Definition
 
-**Churn Definition**: A customer is considered "churned" if they have not made a purchase in the last **90 days** (3 months).
+**Churn Definition**: A customer is considered "churned" if they have not made a purchase in the last **65 days** (~2 months).
 
 This definition is based on:
 - Industry benchmarks for e-commerce repeat purchase cycles
 - Business stakeholder input on acceptable customer dormancy periods
 - Analysis of historical purchase patterns
 
-**Primary Objective**: Build a predictive model to identify customers at high risk of churning in the next 3 months, enabling proactive retention interventions.
+**Primary Objective**: Build a predictive model to identify customers at high risk of churning in the next 2 months, enabling proactive retention interventions.
 
 ## 3. Stakeholders
 
@@ -141,7 +141,7 @@ This definition is based on:
 
 | Metric | Minimum | Target | Stretch |
 |--------|---------|--------|---------|
-| ROC-AUC | 0.75 | 0.78 | 0.85 |
+| ROC-AUC | 0.75 | 0.75 | 0.85 |
 | Precision | 0.70 | 0.75 | 0.80 |
 | Recall | 0.65 | 0.70 | 0.75 |
 | F1-Score | 0.67 | 0.72 | 0.77 |

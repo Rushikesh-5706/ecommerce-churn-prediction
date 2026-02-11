@@ -11,11 +11,11 @@ This document summarizes key insights from exploratory data analysis of 3,213 cu
 ## 1. Churn Distribution Analysis
 
 ### Overall Churn Rate
-- **Churn Rate**: 41.92%
-- **Churned Customers**: 1,347 (42%)
-- **Active Customers**: 1,866 (58%)
+- **Churn Rate**: 50.1%
+- **Churned Customers**: 1,127
+- **Active Customers**: 1,122
 
-**Interpretation**: The churn rate of 41.92% is slightly above the target range (20-40%) but reflects natural retail customer behavior. This class imbalance requires SMOTE or weighted model approaches.
+**Interpretation**: The churn rate of 50.1% (based on 65-day window) provides a perfectly balanced dataset, maximizing model learning efficiency without extreme class imbalance.
 
 ---
 
@@ -262,7 +262,7 @@ Based on EDA findings:
 ## 13. Limitations and Caveats
 
 1. **Churn Rate**: 41.92% is above ideal range (20-40%), reflecting dataset characteristics
-2. **Temporal Validity**: Features based on 283 days of training data, 45 days observation
+2. **Temporal Validity**: Features based on 283 days of training data, 65 days observation
 3. **Seasonal Effects**: Dataset spans Dec 2009 - Oct 2010, may have holiday bias
 4. **Feature Leakage**: Carefully validated that observation period data not used in features
 

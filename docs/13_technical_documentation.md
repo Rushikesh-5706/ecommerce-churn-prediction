@@ -18,7 +18,7 @@ The Customer Churn Prediction System is a complete end-to-end machine learning s
 │                     MODEL LAYER                              │
 ├─────────────────────────────────────────────────────────────┤
 │  SMOTE → [5 Models] → Evaluation → Best Model Selection    │
-│         (LR/DT/RF/GB/NN)    (0.7307 ROC-AUC)                │
+│         (LR/DT/RF/GB/NN)    (0.7517 ROC-AUC)                │
 └─────────────────────────────────────────────────────────────┘
                               ↓
 ┌─────────────────────────────────────────────────────────────┐
@@ -80,7 +80,7 @@ upper_bound = Q3 + 1.5 * IQR
 
 **Temporal Split Strategy**:
 - **Training Period**: 2009-12-01 to 2010-09-09 (283 days)
-- **Observation Period**: 2010-09-10 to 2010-10-25 (45 days)
+- **Observation Period**: 2010-09-10 to 2010-11-14 (65 days)
 - **Churn Definition**: Purchased in training BUT NOT in observation
 
 **Feature Categories** (29 features total):
@@ -131,9 +131,9 @@ X_train_balanced, y_train_balanced = smote.fit_resample(X_train, y_train)
 ```
 
 **Result**:
-- Original training: 2,249 samples (41.9% churn)
-- Balanced training: 2,612 samples (50.0% churn)
-- Improvement: +0.01-0.02 ROC-AUC across all models
+- Original training: 2,249 samples (50.1% churn)
+- Balanced training: 2,254 samples (50.0% churn)
+- Improvement: +0.02-0.03 ROC-AUC across all models
 
 ### Model Comparison
 
@@ -369,7 +369,7 @@ docker run -p 8501:8501 churn-prediction
 └───────┬───────┘  Output: 5 models + metrics
         ↓
 ┌───────────────┐
-│ Select Best   │  Random Forest (0.7307 ROC-AUC)
+│ Select Best   │  Random Forest (0.7517 ROC-AUC)
 └───────┬───────┘  Output: best_model.pkl
         ↓
 ┌───────────────┐
