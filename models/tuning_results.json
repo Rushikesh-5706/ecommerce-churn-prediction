@@ -1,0 +1,5 @@
+{
+    "Random Forest (Tuned)": 0.7265658061785865,
+    "XGBoost (Tuned)": 0.7290167865707434,
+    "Neural Network (Tuned)": 0.728029341232896
+}
