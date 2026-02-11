@@ -40,7 +40,7 @@ class FeatureEngineer:
         # Critical dates for temporal split  
         # Critical dates for temporal split  
         self.training_cutoff = pd.Timestamp('2010-09-09')
-        self.observation_days = 65
+        self.observation_days = 90
         self.observation_end = self.training_cutoff + pd.Timedelta(days=self.observation_days)
         
         self.feature_info = {

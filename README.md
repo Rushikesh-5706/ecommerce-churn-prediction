@@ -1,12 +1,12 @@
 # E-Commerce Customer Churn Prediction
 
 ## Project Overview
-This project implements a production-ready machine learning pipeline to predict customer churn in an e-commerce context. By analyzing transactional data from 2009-2010, the system identifies customers likely to stop purchasing in the next 65 days. The solution is built with Python, Scikit-Learn, and Streamlit, featuring a comprehensive data processing pipeline and an interactive dashboard.
+This project implements a production-ready machine learning pipeline to predict customer churn in an e-commerce context. By analyzing transactional data from 2009-2010, the system identifies customers likely to stop purchasing in the next 90 days (3 months). The solution is built with Python, Scikit-Learn, and Streamlit, featuring a comprehensive data processing pipeline and an interactive dashboard.
 
 ## Business Problem
 **Context**: E-commerce businesses face high customer acquisition costs. Retaining existing customers is 5-25x cheaper.
 **Problem**: The platform is losing ~50% of its customers annually but lacks visibility into who is at risk.
-**Goal**: Predict churn (no purchase in 65 days) with >75% ROC-AUC to enable proactive retention campaigns.
+**Goal**: Predict churn (no purchase in 90 days) with >75% ROC-AUC to enable proactive retention campaigns.
 **Impact**: Targeted retention could save estimated £167,000 annually.
 
 ## Dataset
