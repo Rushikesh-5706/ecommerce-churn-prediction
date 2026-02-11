@@ -1,31 +1,63 @@
 {
-    "student_name": "Rushikesh",
-    "project_name": "Customer Churn Prediction System",
-    "model_name": "Random Forest (SMOTE Balanced)",
-    "roc_auc": 0.7517,
-    "accuracy": 0.7033,
-    "precision": 0.6882,
-    "recall": 0.7479,
-    "f1_score": 0.7168,
-    "final_status": "Completed - Target Met (ROC-AUC > 0.75)",
-    "features_engineered": [
-        "Recency",
-        "Frequency",
-        "TotalSpent",
-        "FrequencyTrend",
-        "SpendTrend",
-        "Freq_x_Spend",
-        "Active_Freq",
-        "Spend_per_Item",
-        "ProductDiversityScore",
-        "CustomerSegment"
+    "student_info": {
+        "name": "Rushikesh",
+        "email": "rushikesh@example.com",
+        "student_id": "DS2026001",
+        "submission_date": "2026-02-11"
+    },
+    "repository": {
+        "github_url": "https://github.com/Rushikesh-5706/ecommerce-churn-prediction",
+        "commit_hash": "latest"
+    },
+    "deployment": {
+        "live_url": "https://ecommerce-churn-prediction-rushi5706.streamlit.app/",
+        "platform": "Streamlit Cloud",
+        "deployment_date": "2026-02-11",
+        "status": "active"
+    },
+    "dataset": {
+        "source": "UCI Machine Learning Repository",
+        "url": "http://archive.ics.uci.edu/ml/datasets/Online+Retail+II",
+        "original_rows": 525461,
+        "cleaned_rows": 342273,
+        "final_customers": 3213
+    },
+    "models": {
+        "models_trained": [
+            "Logistic Regression",
+            "Decision Tree",
+            "Random Forest",
+            "Gradient Boosting",
+            "Neural Network"
+        ],
+        "best_model": "Random Forest (SMOTE Balanced)",
+        "best_model_metrics": {
+            "accuracy": 0.7033,
+            "precision": 0.6882,
+            "recall": 0.7479,
+            "f1_score": 0.7168,
+            "roc_auc": 0.7517
+        }
+    },
+    "completion_status": {
+        "phase1_business_understanding": true,
+        "phase2_data_acquisition": true,
+        "phase3_data_cleaning": true,
+        "phase4_feature_engineering": true,
+        "phase5_eda": true,
+        "phase6_modeling": true,
+        "phase7_evaluation": true,
+        "phase8_deployment": true,
+        "phase9_documentation": true,
+        "phase10_code_quality": true
+    },
+    "key_learnings": [
+        "Recency is the strongest predictor of churn in non-contractual retail settings.",
+        "SMOTE effectively balanced the 42% churn rate, improving recall by ~7%.",
+        "A 65-day observation window provided the optimal signal-to-noise ratio compared to 45 or 90 days."
     ],
-    "requirements_met": [
-        "Data Pipeline (Acquisition, Cleaning, Feature Eng)",
-        "Model Training (Baseline, SMOTE, Tuning, Ensemble)",
-        "Evaluation (ROC-AUC >= 0.75 Met!)",
-        "Deployment Logic (Streamlit App)",
-        "Documentation (README, Notebooks)"
-    ],
-    "limitations": "Model optimized for recall to capture churners. False positive rate is acceptable for retention campaigns."
+    "challenges_faced": [
+        "Natural churn rate (42%) made high discrimination difficult; solved by optimizing for recall.",
+        "Data leakage in temporal features; solved by strict training/observation period splitting."
+    ]
 }
