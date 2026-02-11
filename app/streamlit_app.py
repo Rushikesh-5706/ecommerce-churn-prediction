@@ -114,7 +114,7 @@ def main():
         - 🎯 **High Accuracy**: Trained on 3,213 customers with 33 features
         
         **Model Performance:**
-        - **ROC-AUC Score**: 0.7517 (Target Met)
+        - **ROC-AUC Score**: 0.7517
         - **Precision**: 0.69
         - **Recall**: 0.75
         
