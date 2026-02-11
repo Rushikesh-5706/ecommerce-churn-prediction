@@ -84,8 +84,9 @@ def predict_churn(customer_data, model, scaler, feature_names):
     df_scaled = scaler.transform(df)
     
     # Predict
-    prediction = model.predict(df_scaled)[0]
+    # prediction = model.predict(df_scaled)[0] # Default 0.5 threshold
     probability = model.predict_proba(df_scaled)[0][1]
+    prediction = 1 if probability >= 0.53 else 0
     
     return prediction, probability
 
