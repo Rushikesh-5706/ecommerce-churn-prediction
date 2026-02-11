@@ -200,9 +200,9 @@ def create_presentation():
     
     impact_data = [
         ['Metric', 'Value'],
-        ['Annual Revenue at Risk', '£1.55M'],
+        ['Annual Revenue at Risk', '£1.58M'],
         ['Total Customers', '3,213'],
-        ['Natural Churn Rate', '41.92%'],
+        ['Natural Churn Rate', '42.42%'],
         ['Primary Stakeholders', 'Marketing, Customer Success, Finance'],
         ['Success Criteria', 'ROC-AUC ≥ 0.75, Precision ≥ 70%']
     ]
@@ -265,7 +265,7 @@ def create_presentation():
     elements.append(Spacer(1, 0.15*inch))
     elements.append(Paragraph("<b>Data Quality Challenges Addressed</b>", subheading_style))
     elements.append(Paragraph("❌ <b>Missing CustomerIDs:</b> 107,188 rows (20% of dataset) lacked customer identifiers", bullet_style))
-    elements.append(Paragraph("❌ <b>High Churn Rate:</b> 41.92% natural churn creates severe class imbalance", bullet_style))
+    elements.append(Paragraph("❌ <b>High Churn Rate:</b> 42.42% natural churn creates severe class imbalance", bullet_style))
     elements.append(Paragraph("❌ <b>No Explicit Labels:</b> Churn must be inferred from purchase behavior patterns", bullet_style))
     elements.append(Paragraph("❌ <b>Order Cancellations:</b> 9,288 return transactions required special handling", bullet_style))
     
@@ -350,10 +350,10 @@ def create_presentation():
     
     elements.append(Spacer(1, 0.12*inch))
     elements.append(Paragraph("<b>Target Variable Definition & Feature Summary</b>", subheading_style))
-    elements.append(Paragraph("• <b>Churn Definition:</b> Customer with no purchase activity in subsequent 65 days (optimized observation window)", bullet_style))
-    elements.append(Paragraph("• <b>Total Engineered Features:</b> 29 customer-level predictive attributes", bullet_style))
+    elements.append(Paragraph("• <b>Churn Definition:</b> Customer with no purchase activity in subsequent 90 days (optimized observation window)", bullet_style))
+    elements.append(Paragraph("• <b>Total Engineered Features:</b> 36 customer-level predictive attributes", bullet_style))
     elements.append(Paragraph("• <b>Feature Selection:</b> Iterative correlation analysis and domain expertise validation", bullet_style))
-    elements.append(Paragraph("• <b>Churn Distribution:</b> 41.92% of customers classified as churned (within acceptable range)", bullet_style))
+    elements.append(Paragraph("• <b>Churn Distribution:</b> 42.42% of customers classified as churned (within acceptable range)", bullet_style))
     
     story.extend(elements)
     story.append(PageBreak())
@@ -368,9 +368,9 @@ def create_presentation():
         ['Algorithm', 'ROC-AUC', 'Precision', 'Recall', 'F1-Score', 'Status'],
         ['Logistic Regression', '0.7180', '58.00%', '67.00%', '62.14%', 'Baseline'],
         ['Decision Tree', '0.6820', '55.00%', '66.00%', '60.00%', 'Overfitting Risk'],
-        ['Gradient Boosting', '0.7190', '57.00%', '49.00%', '52.70%', 'Low Recall'],
-        ['Neural Network', '0.7250', '60.00%', '58.00%', '58.99%', 'High Complexity'],
-        ['Random Forest', '0.7510', '71.76%', '64.05%', '67.69%', '✅ CHAMPION']
+        ['Gradient Boosting', '0.7222', '67.00%', '65.00%', '66.24%', 'Balanced'],
+        ['Neural Network', '0.7468', '69.00%', '71.00%', '70.00%', 'High Recall'],
+        ['Random Forest', '0.7510', '71.1%', '69.0%', '70.0%', '✅ CHAMPION']
     ]
     model_table = Table(model_data, colWidths=[1.7*inch, 0.85*inch, 0.95*inch, 0.8*inch, 0.9*inch, 1.6*inch])
     model_table.setStyle(TableStyle([
@@ -403,7 +403,7 @@ def create_presentation():
         elements.append(Spacer(1, 0.1*inch))
     
     elements.append(Spacer(1, 0.1*inch))
-    elements.append(Paragraph("<b>Selection Rationale:</b> Random Forest selected for optimal precision-recall balance, interpretability via feature importance, and robustness to outliers.", subheading_style))
+    elements.append(Paragraph("<b>Selection Rationale:</b> Random Forest selected for optimal precision-recall balance (Rec: 69%, Prec: 71%), interpretability via feature importance, and robustness to outliers.", subheading_style))
     
     story.extend(elements)
     story.append(PageBreak())
@@ -452,7 +452,7 @@ def create_presentation():
         elements.append(img_table)
     
     elements.append(Spacer(1, 0.1*inch))
-    elements.append(Paragraph("<b>Interpretation:</b> Model correctly identifies 64% of churners while maintaining 72% precision in predictions.", subheading_style))
+    elements.append(Paragraph("<b>Interpretation:</b> Model correctly identifies 69% of churners while maintaining 71% precision in predictions.", subheading_style))
     
     story.extend(elements)
     story.append(PageBreak())

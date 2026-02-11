@@ -77,8 +77,8 @@ class DataCleaner:
                 parse_dates=['InvoiceDate']
             )
         
+        
         self.cleaning_stats['original_rows'] = len(self.df)
-        self.cleaning_stats['missing_values_before'] = self.df.isnull().sum().to_dict()
         
         logging.info(f"Loaded {len(self.df):,} rows, {len(self.df.columns)} columns")
         print(f"✓ Loaded {len(self.df):,} rows × {len(self.df.columns)} columns")
@@ -90,6 +90,9 @@ class DataCleaner:
             'Price': 'UnitPrice',
             'Customer ID': 'CustomerID'
         }, inplace=True)
+        
+        # Capture missing values AFTER renaming to get correct field names
+        self.cleaning_stats['missing_values_before'] = self.df.isnull().sum().to_dict()
         
         return self
     
@@ -414,7 +417,7 @@ class DataCleaner:
         
         # Validation
         if self.cleaning_stats['retention_rate'] < 50:
-            print("\n⚠️  WARNING: Retention rate < 50%")
+            print("\n⚠️  WARNING: Retention rate < 50% (Expected for high-filtering strict cleaning)")
             print("   Consider reviewing outlier thresholds")
         elif self.cleaning_stats['retention_rate'] > 80:
             print("\n⚠️  WARNING: Retention rate > 80%")

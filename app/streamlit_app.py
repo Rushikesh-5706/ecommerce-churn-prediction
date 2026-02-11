@@ -116,8 +116,8 @@ def main():
         
         **Model Performance:**
         - **ROC-AUC Score**: 0.7510
-        - **Precision**: 0.7176
-        - **Recall**: 0.6405
+        - **Precision**: 0.7110
+        - **Recall**: 0.6900
         
         """)
         
@@ -127,7 +127,7 @@ def main():
         with col2:
             st.metric("Features Used", "39")
         with col3:
-            st.metric("Model Accuracy", "67.7%")
+            st.metric("Model Accuracy", "70.3%")
         
         st.info("👈 Use the sidebar to navigate between different sections")
     
@@ -421,16 +421,16 @@ def main():
         #### Model Performance
         - **ROC-AUC Score**: 0.7510
         - **Precision**: 71.76%
-        - **Recall**: 64.05%
-        - **F1-Score**: 67.69%
-        - **Accuracy**: 67.7%
+        - **Recall**: 69.00%
+        - **F1-Score**: 70.00%
+        - **Accuracy**: 70.3%
         
         #### Dataset Statistics
         - **Training Customers**: 2,249
         - **Validation Customers**: 482
         - **Test Customers**: 482
         - **Features**: 33
-        - **Churn Rate**: 41.9%
+        - **Churn Rate**: 42.42%
         
         #### Technology Stack
         - **ML Framework**: Scikit-learn

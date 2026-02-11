@@ -18,7 +18,7 @@ The Customer Churn Prediction System is a complete end-to-end machine learning s
 │                     MODEL LAYER                              │
 ├─────────────────────────────────────────────────────────────┤
 │  SMOTE → [5 Models] → Evaluation → Best Model Selection    │
-│         (LR/DT/RF/GB/NN)    (0.7517 ROC-AUC)                │
+│         (LR/DT/RF/GB/NN)    (0.7510 ROC-AUC)                │
 └─────────────────────────────────────────────────────────────┘
                               ↓
 ┌─────────────────────────────────────────────────────────────┐
@@ -120,7 +120,7 @@ upper_bound = Q3 + 1.5 * IQR
 
 ### SMOTE Implementation
 
-**Problem**: 41.92% churn rate creates class imbalance
+**Problem**: 42.42% churn rate creates class imbalance
 
 **Solution**: Synthetic Minority Over-sampling Technique (SMOTE)
 ```python
@@ -369,7 +369,7 @@ docker run -p 8501:8501 churn-prediction
 └───────┬───────┘  Output: 5 models + metrics
         ↓
 ┌───────────────┐
-│ Select Best   │  Random Forest (0.7517 ROC-AUC)
+│ Select Best   │  Random Forest (0.7510 ROC-AUC)
 └───────┬───────┘  Output: best_model.pkl
         ↓
 ┌───────────────┐

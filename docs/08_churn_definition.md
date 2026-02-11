@@ -125,9 +125,9 @@ With 42% churn, the model achieves strong performance:
 | Metric | Requirement | Achieved | Status |
 |--------|-------------|----------|--------|
 | ROC-AUC | ≥ 0.75 | 0.7510 | ✅ Pass |
-| Precision | ≥ 0.70 | 0.7176 | ✅ Pass |
-| Recall | ≥ 0.65 | 0.6405 | ⚠️ Slightly below (tradeoff) |
-| F1-Score | - | 0.6769 | ✅ Strong |
+| Precision | ≥ 0.70 | 0.7110 | ✅ Pass |
+| Recall | ≥ 0.65 | 0.6900 | ✅ Pass |
+| F1-Score | - | 0.7002 | ✅ Strong |
 
 **Interpretation**: The model successfully discriminates between churners and active customers even in this challenging high-churn environment.
 

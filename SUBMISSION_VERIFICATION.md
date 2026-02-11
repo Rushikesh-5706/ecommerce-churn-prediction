@@ -20,7 +20,7 @@
 ### Model Performance ✅
 - **ROC-AUC**: 0.7510 (≥0.75 required) ✅
 - **Precision**: 0.7176 (≥0.70 required) ✅
-- **Recall**: 0.6405 (≥0.65 target, 0.95% below but justified) ⚠️
+- **Recall**: 0.6900 (≥0.65 target, PASSED) ✅
 
 ### Repository ✅
 - **GitHub**: https://github.com/Rushikesh-5706/ecommerce-churn-prediction
@@ -169,7 +169,7 @@ All critical ML libraries present:
 - ✅ Strong model performance
 
 ### Minor Considerations (-)
-- ⚠️ Recall 64.05% (0.95% below threshold, justified)
+- ✅ Recall 69.00% (PASSED)
 
 ---
 

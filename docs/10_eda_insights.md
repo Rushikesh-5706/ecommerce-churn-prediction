@@ -240,7 +240,7 @@ Based on EDA findings:
 ## 12. Modeling Recommendations
 
 ### Class Imbalance Strategy
-- 41.92% churn rate requires:
+- 42.42% churn rate requires:
   - Option 1: SMOTE (Synthetic Minority Over-sampling)
   - Option 2: Class weights in model training
   - Option 3: Ensemble with balanced sampling
@@ -261,7 +261,7 @@ Based on EDA findings:
 
 ## 13. Limitations and Caveats
 
-1. **Churn Rate**: 41.92% is above ideal range (20-40%), reflecting dataset characteristics
+1. **Churn Rate**: 42.42% is above ideal range (20-40%), reflecting dataset characteristics
 2. **Temporal Validity**: Features based on 283 days of training data, 90 days observation
 3. **Seasonal Effects**: Dataset spans Dec 2009 - Oct 2010, may have holiday bias
 4. **Feature Leakage**: Carefully validated that observation period data not used in features

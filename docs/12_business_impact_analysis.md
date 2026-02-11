@@ -56,7 +56,7 @@ This analysis translates machine learning model performance into business value,
 | Retention Campaign Cost | £50 | Industry standard (email + offer + support) |
 | Retention Success Rate | 30% | Conservative estimate for targeted campaigns |
 | Total Customers | 3,213 | Current customer base |
-| Annual Churn Rate | 41.92% | From feature engineering |
+| Annual Churn Rate | 42.42% | From feature engineering |
 | Test Set Size | 482 | 15% of total (from data split) |
 
 ### Scenario Analysis
@@ -64,14 +64,14 @@ This analysis translates machine learning model performance into business value,
 #### Baseline (No Model)
 
 **Annual Churners**:
-3,213 customers × 41.92% = **1,347 churners/year**
+3,213 customers × 42.42% = **1,363 churners/year**
 
 **Lost Revenue**:
 1,347 × £1,150 LTV = **£1,549,050/year**
 
 **Random Retention Efforts** (if applied to all 3,213 customers):
 - Cost: 3,213 × £50 = £160,650
-- Success: 3,213 × 30% × 41.92% × £1,150 = £467,177 saved
+- Success: 3,213 × 30% × 42.42% × £1,150 = £470,227 saved
 - **Net Loss**: £1,549,050 - £467,177 + £160,650 = **£1,242,523**
 
 #### With Model (Targeted Retention)
@@ -207,7 +207,7 @@ Using more conservative numbers:
   - Set retraining trigger at ROC-AUC < 0.70
   - Supplement with rule-based flags (e.g., 90-day inactivity)
 
-**Risk 2: 41.92% Churn Rate (above 40% target)**
+**Risk 2: 42.42% Churn Rate (above 40% target)**
 - **Impact**: Reflects tough market, not model failure
 - **Mitigation**:
   - Focus on relative improvement (13.4% reduction)
@@ -238,7 +238,7 @@ Using more conservative numbers:
 
 | Metric | Baseline | Target (Month 3) | Target (Month 12) |
 |--------|----------|------------------|-------------------|
-| Monthly Churn Rate | 41.92% | 38.5% | 36.0% |
+| Monthly Churn Rate | 42.42% | 38.5% | 36.0% |
 | Retention Campaign ROI | N/A | 120% | 150% |
 | Customers Saved | 0 | 45 | 181 |
 | Model ROC-AUC (holdout) | 0.7307 | >0.72 | >0.73 |

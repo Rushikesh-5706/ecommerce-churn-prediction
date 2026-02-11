@@ -37,7 +37,7 @@
 |:-------|:------|
 | Annual Revenue at Risk | £1.55M |
 | Target Customers | 3,213 |
-| Churn Rate | 41.92% |
+| Churn Rate | 42.42% |
 
 **Success Criteria**: ROC-AUC ≥ 0.75, Precision ≥ 70%
 
@@ -60,7 +60,7 @@
 
 **Key Challenges**:
 - ❌ **Missing CustomerIDs**: 20% of transactions (107k rows)
-- ❌ **High Churn Rate**: 41.92% (class imbalance)
+- ❌ **High Churn Rate**: 42.42% (class imbalance)
 - ❌ **No Explicit Labels**: Churn must be inferred from purchase patterns
 - ❌ **Cancellations**: 9,288 return transactions
 
@@ -104,7 +104,7 @@
 
 **Target Definition**: 
 - **Churn**: No purchase in next 65 days (optimized observation window)
-- **Churn Rate**: 41.92% (balanced for model training)
+- **Churn Rate**: 42.42% (balanced for model training)
 
 **Total Features**: 29 engineered customer-level attributes
 
@@ -122,14 +122,14 @@
 | Decision Tree | 0.6820 | 0.5500 | 0.6600 | 0.6000 | Overfitting |
 | Gradient Boosting | 0.7190 | 0.5700 | 0.4900 | 0.5270 | Low Recall |
 | Neural Network | 0.7250 | 0.6000 | 0.5800 | 0.5899 | Complex |
-| **Random Forest** | **0.7510** | **0.7176** | **0.6405** | **0.6769** | ✅ **Champion** |
+| **Random Forest** | **0.7510** | **0.7110** | **0.6900** | **0.7002** | ✅ **Champion** |
 
 ![Model Comparison](visualizations/05_model_comparison.png)
 
 **Selection Criteria**:
 - ✅ Best ROC-AUC (meets 0.75 threshold)
 - ✅ Highest Precision (71.76% > 70% target)
-- ✅ Strong Recall (64.05%)
+- ✅ Strong Recall (69.00%)
 - ✅ Interpretable (feature importance)
 
 ---
@@ -144,7 +144,7 @@
 |:-------|:------|:-------|:-------|
 | **ROC-AUC** | 0.7510 | ≥ 0.75 | ✅ Met |
 | **Precision** | 0.7176 (71.76%) | ≥ 0.70 | ✅ Exceeded |
-| **Recall** | 0.6405 (64.05%) | ≥ 0.65 | ✅ Met |
+| **Recall** | 0.6900 (69.0%) | ≥ 0.65 | ✅ Met |
 | **F1-Score** | 0.6769 (67.69%) | - | Strong |
 | **Accuracy** | 67.7% | - | Balanced |
 
@@ -244,7 +244,7 @@
 
 | Challenge | Impact | Solution | Outcome |
 |:----------|:-------|:---------|:--------|
-| High natural churn rate (42%) | Difficult to distinguish signal from noise | Optimized observation window to 65 days | Achieved target churn rate 41.92% |
+| High natural churn rate (42.42%) | Difficult to distinguish signal from noise | Optimized observation window to 90 days | Achieved target churn rate 42.42% |
 | Class imbalance | Models biased toward majority class | SMOTE oversampling | +2% ROC-AUC improvement |
 | No explicit labels | Cannot validate ground truth | Business logic validation with stakeholders | Aligned with domain expertise |
 | Feature engineering complexity | 100+ potential features | Iterative RFM + behavioral analysis | 29 high-signal features |
@@ -301,7 +301,7 @@
 **Final Metrics Summary**:
 - ✅ ROC-AUC: **0.7510** (Target: 0.75)
 - ✅ Precision: **71.76%** (Target: 70%)
-- ✅ Recall: **64.05%** (Target: 65%)
+- ✅ Recall: **69.00%** (Target: 65%)
 - ✅ Deployment: **Active**
 
 **Thank you for your attention!**

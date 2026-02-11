@@ -10,7 +10,7 @@
         "days": 90
     },
     "total_features": 36,
-    "churn_rate": 0.5011,
+    "churn_rate": 0.4242,
     "total_customers": 3213,
     "feature_categories": {
         "rfm": 6,
@@ -20,10 +20,10 @@
         "derived": 10
     },
     "training_cutoff": "2010-09-09",
-    "observation_end": "2010-11-13",
+    "observation_end": "2010-12-08",
     "training_customers": 3213,
-    "churned_customers": 1610,
-    "active_customers": 1603,
+    "churned_customers": 1363,
+    "active_customers": 1850,
     "features": [
         {
             "name": "Recency",

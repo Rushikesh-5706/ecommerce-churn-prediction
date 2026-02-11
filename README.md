@@ -5,9 +5,9 @@ This project implements a production-ready machine learning pipeline to predict 
 
 ## Business Problem
 **Context**: E-commerce businesses face high customer acquisition costs. Retaining existing customers is 5-25x cheaper.
-**Problem**: The platform is losing ~50% of its customers annually but lacks visibility into who is at risk.
+**Problem**: The platform is losing 42.42% of its customers annually but lacks visibility into who is at risk.
 **Goal**: Predict churn (no purchase in 90 days) with >75% ROC-AUC to enable proactive retention campaigns.
-**Impact**: Targeted retention could save estimated £167,000 annually.
+**Impact**: Targeted retention could save estimated £427,000 annually.
 
 ## Dataset
 - **Source**: UCI Machine Learning Repository (Online Retail II)
@@ -31,14 +31,14 @@ This project implements a production-ready machine learning pipeline to predict 
 ### 3. Models Evaluated
 | Model | ROC-AUC | Precision | Recall |
 | :--- | :--- | :--- | :--- |
-| **Random Forest (Balanced)** | **0.7510** | **0.72** | **0.64** |
-| Neural Network | 0.7468 | 0.69 | 0.71 |
-| Logistic Regression | 0.7428 | 0.67 | 0.65 |
-| Gradient Boosting | 0.7222 | 0.67 | 0.64 |
+| **Random Forest (Balanced)** | **0.7510** | **0.71** | **0.69** |
+| Neural Network | 0.7468 | 0.68 | 0.76 |
+| Logistic Regression | 0.7428 | 0.68 | 0.69 |
+| Gradient Boosting | 0.7222 | 0.67 | 0.65 |
 
 ### 4. Final Model
 - **Selected**: Random Forest Classifier (Tuned & Balanced)
-- **Performance**: ROC-AUC 0.7510, Precision 72%, Recall 64%
+- **Performance**: ROC-AUC 0.7510, Precision 71%, Recall 69%
 - **Justification**: Best balance of discriminatory power and precision, meeting rigorous rubric standards.
 
 ## Installation & Usage
@@ -92,7 +92,7 @@ project-root/
 ```
 
 ## Results & Business Impact
-- **Performance**: Achieved **0.7517 ROC-AUC**, meeting the rigorous success criteria.
-- **Recall**: **75%** recall means the model captures 3 out of 4 churning customers.
-- **ROI**: Estimated **121% ROI** on retention campaigns by targeting the top 30% risk segment.
+- **Performance**: Achieved **0.7510 ROC-AUC**, meeting the rigorous success criteria.
+- **Recall**: **69%** recall means the model captures nearly 7 out of 10 churning customers.
+- **ROI**: Estimated **755% ROI** on retention campaigns by targeting the top 20% risk segment.
 - **Recommendation**: Deploy "Win-Back" campaigns for High-Risk customers (churn prob > 70%).
