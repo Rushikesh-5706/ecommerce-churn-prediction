@@ -1,0 +1,31 @@
+{
+    "student_name": "Rushikesh",
+    "project_name": "Customer Churn Prediction System",
+    "model_name": "XGBoost (Tuned) / Stacking Ensemble",
+    "roc_auc": 0.7290,
+    "accuracy": 0.6600,
+    "precision": 0.5920,
+    "recall": 0.6470,
+    "f1_score": 0.6180,
+    "final_status": "Completed - Best Effort Optimized",
+    "features_engineered": [
+        "Recency",
+        "Frequency",
+        "TotalSpent",
+        "FrequencyTrend",
+        "SpendTrend",
+        "Freq_x_Spend",
+        "Active_Freq",
+        "Spend_per_Item",
+        "ProductDiversityScore",
+        "CustomerSegment"
+    ],
+    "requirements_met": [
+        "Data Pipeline (Acquisition, Cleaning, Feature Eng)",
+        "Model Training (Baseline, SMOTE, Tuning, Ensemble)",
+        "Evaluation (ROC-AUC, Confusion Matrix)",
+        "Deployment Logic (Streamlit App)",
+        "Documentation (README, Notebooks)"
+    ],
+    "limitations": "ROC-AUC (0.729) is slightly below 0.75 target despite extensive tuning and feature engineering (Trends, Interactions, Stacking). Further improvement requires external data or longer observation window."
+}
