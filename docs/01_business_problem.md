@@ -19,7 +19,7 @@ RetailCo Analytics operates in a highly competitive e-commerce market where cust
 
 ## 2. Problem Definition
 
-**Churn Definition**: A customer is considered "churned" if they have not made a purchase in the last **65 days** (~2 months).
+**Churn Definition**: A customer is considered "churned" if they have not made a purchase in the last **90 days** (3 months).
 
 This definition is based on:
 - Industry benchmarks for e-commerce repeat purchase cycles

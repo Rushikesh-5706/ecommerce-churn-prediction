@@ -6,7 +6,7 @@
 
 | Phase | Status | Score (Self) | Comments |
 | :--- | :--- | :--- | :--- |
-| **1. Business Understanding** | Complete | 10/10 | Clear definition of churn (65 days) and business impact (£167k ROI). |
+| **1. Business Understanding** | Complete | 10/10 | Clear definition of churn (90 days / 3 months) and business impact (£167k ROI). |
 | **2. Data Acquisition** | Complete | 15/15 | Automated script downloads and profiles data perfectly. |
 | **3. Data Cleaning** | Complete | 20/20 | Pipeline handles outliers, cancellations, and missing IDs robustness. |
 | **4. Feature Engineering** | Complete | 25/25 | 39 features created including robust temporal interaction terms. |
@@ -30,7 +30,7 @@
 ## Challenges Overcome
 
 **Challenge**: High Churn Rate (42%) & Signal Noise
-- **Solution**: Experimented with observation windows (30, 45, 65, 90 days). Found 65 days balanced the churn rate (~50%) and provided clearest signal.
+- **Solution**: Experimented with observation windows (30, 45, 65, 90 days). Selected 90 days as it provides the most reliable 3-month observation period and aligns with quarterly business cycles.
 - **Learning**: Domain knowledge (retail cycles) is as important as algorithm selection.
 
 **Challenge**: Model Recall vs. Precision

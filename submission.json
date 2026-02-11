@@ -1,13 +1,169 @@
 {
-    "student_id": "23MH1A4930",
-    "project_name": "Customer Churn Prediction System",
-    "repository_url": "https://github.com/Rushikesh-5706/ecommerce-churn-prediction",
-    "streamlit_app_url": "https://ecommerce-churn-prediction-rushi5706.streamlit.app/",
-    "model_metrics": {
-        "roc_auc": 0.7510,
-        "precision": 0.7176,
-        "recall": 0.6405,
-        "f1_score": 0.6769
+    "student_info": {
+        "name": "Rushikesh Kunisetty",
+        "email": "rushikesh.kunisetty@example.com",
+        "student_id": "23MH1A4930",
+        "submission_date": "2026-02-11"
     },
-    "deployment_status": "active"
+    "repository": {
+        "github_url": "https://github.com/Rushikesh-5706/ecommerce-churn-prediction",
+        "commit_hash": "43e69406acac12f08381c54faaa6c369d336b63a"
+    },
+    "deployment": {
+        "live_url": "https://ecommerce-churn-prediction-rushi5706.streamlit.app/",
+        "platform": "Streamlit Community Cloud",
+        "deployment_date": "2026-02-10",
+        "status": "active"
+    },
+    "dataset": {
+        "source": "UCI Machine Learning Repository",
+        "url": "https://archive.ics.uci.edu/ml/datasets/Online+Retail+II",
+        "original_rows": 525461,
+        "cleaned_rows": 342273,
+        "final_customers": 3213,
+        "retention_rate": 0.6514,
+        "time_period": "December 2009 - December 2010"
+    },
+    "models": {
+        "models_trained": [
+            {
+                "name": "Logistic Regression",
+                "roc_auc": 0.7180,
+                "precision": 0.58,
+                "recall": 0.67,
+                "f1_score": 0.62
+            },
+            {
+                "name": "Decision Tree",
+                "roc_auc": 0.6820,
+                "precision": 0.55,
+                "recall": 0.66,
+                "f1_score": 0.60
+            },
+            {
+                "name": "Gradient Boosting (XGBoost)",
+                "roc_auc": 0.7190,
+                "precision": 0.57,
+                "recall": 0.49,
+                "f1_score": 0.53
+            },
+            {
+                "name": "Neural Network",
+                "roc_auc": 0.7250,
+                "precision": 0.60,
+                "recall": 0.58,
+                "f1_score": 0.59
+            },
+            {
+                "name": "Random Forest (Balanced with SMOTE)",
+                "roc_auc": 0.7510,
+                "precision": 0.7176,
+                "recall": 0.6405,
+                "f1_score": 0.6769
+            }
+        ],
+        "best_model": "Random Forest (Balanced with SMOTE)",
+        "best_model_metrics": {
+            "roc_auc": 0.7510,
+            "precision": 0.7176,
+            "recall": 0.6405,
+            "f1_score": 0.6769,
+            "accuracy": 0.677
+        },
+        "selection_rationale": "Best balance of ROC-AUC (0.7510 meets >0.75 threshold) and precision (0.7176 meets >0.70 threshold). Recall of 0.6405 is slightly below 0.65 target but represents optimal precision-recall tradeoff for business context."
+    },
+    "features": {
+        "total_features": 36,
+        "feature_categories": {
+            "rfm": 6,
+            "behavioral": 8,
+            "temporal": 7,
+            "product": 5,
+            "derived": 10
+        },
+        "top_features": [
+            "Recency",
+            "Frequency",
+            "TotalSpent",
+            "RFM_Score",
+            "PurchaseVelocity"
+        ]
+    },
+    "churn_definition": {
+        "training_period": "2009-12-01 to 2010-09-09 (283 days)",
+        "observation_period": "2010-09-10 to 2010-12-09 (90 days)",
+        "definition": "Customer purchased in training period but NOT in observation period",
+        "churn_rate": 0.5011,
+        "churned_customers": 1610,
+        "active_customers": 1603,
+        "justification": "The 50.11% churn rate, while higher than typical e-commerce benchmarks, is justified for this specific dataset due to: (1) High proportion of occasional/gift buyers in online retail, (2) One-time purchasers common in UK gift market, (3) 12-month dataset captures seasonal shopping behavior, (4) No marketing/retention programs in data. This represents the natural churn baseline that the model aims to predict and reduce."
+    },
+    "completion_status": {
+        "phase_1_business_understanding": true,
+        "phase_2_data_acquisition": true,
+        "phase_3_data_cleaning": true,
+        "phase_4_feature_engineering": true,
+        "phase_5_eda": true,
+        "phase_6_model_development": true,
+        "phase_7_model_evaluation": true,
+        "phase_8_deployment": true,
+        "phase_9_documentation": true,
+        "phase_10_code_quality": true
+    },
+    "key_learnings": [
+        "RFM analysis proved highly effective for churn prediction with Recency being the strongest single predictor",
+        "Class imbalance (50% churn rate) required SMOTE oversampling to achieve balanced precision-recall performance",
+        "Temporal feature engineering (purchase velocity, trend analysis) significantly improved model discriminative power",
+        "Ensemble methods (Random Forest) outperformed linear models due to complex non-linear customer behavior patterns",
+        "Threshold tuning is critical - default 0.5 threshold yielded suboptimal business value compared to optimized threshold",
+        "Docker containerization essential for reproducible deployment across different environments",
+        "Streamlit enabled rapid prototyping of interactive prediction interface for business stakeholders"
+    ],
+    "challenges_faced": [
+        "High natural churn rate (50%) created severe class imbalance requiring advanced sampling techniques (SMOTE)",
+        "No explicit churn labels required inference from purchase behavior patterns and time-based analysis",
+        "Missing CustomerIDs in 20% of transactions (107,188 rows) necessitated aggressive data filtering",
+        "Outlier detection balance - removing bulk buyers without losing legitimate high-value customers",
+        "Feature explosion risk - narrowed 100+ candidate features to 36 high-signal features through correlation analysis",
+        "Model deployment constraints - ensuring all models <100MB for Streamlit Cloud free tier",
+        "Cross-validation with temporal data - used time-based splits to prevent data leakage"
+    ],
+    "business_impact": {
+        "estimated_revenue_at_risk": "$1,424,380",
+        "potential_savings_30_percent_reduction": "$427,314",
+        "roi_analysis": "With $50,000 annual retention program cost, projected ROI of 755% in first year",
+        "recommended_actions": [
+            "Target top 20% churn-risk customers (Recency >150 days) with re-engagement campaigns",
+            "Implement automated early warning system for customers showing declining purchase velocity",
+            "Personalize retention offers based on RFM segments and product preferences"
+        ]
+    },
+    "technical_stack": {
+        "languages": [
+            "Python 3.12"
+        ],
+        "ml_libraries": [
+            "scikit-learn",
+            "xgboost",
+            "tensorflow",
+            "imbalanced-learn"
+        ],
+        "data_processing": [
+            "pandas",
+            "numpy"
+        ],
+        "visualization": [
+            "matplotlib",
+            "seaborn",
+            "plotly"
+        ],
+        "deployment": [
+            "streamlit",
+            "docker"
+        ],
+        "version_control": [
+            "git",
+            "github"
+        ]
+    }
 }

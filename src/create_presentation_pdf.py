@@ -109,6 +109,17 @@ def make_bullet_style():
         spaceAfter=4
     )
 
+def make_table_cell_style(font_size=9):
+    """Helper to create paragraph style for table cells with proper wrapping"""
+    return ParagraphStyle(
+        'TableCell',
+        fontName='Helvetica',
+        fontSize=font_size,
+        leading=font_size + 2,
+        alignment=TA_LEFT,
+        wordWrap='CJK'
+    )
+
 def create_presentation():
     filename = "presentation.pdf"
     doc = SimpleDocTemplate(
@@ -138,16 +149,18 @@ def create_presentation():
     
     # Centered student info
     info_data = [
-        [Paragraph("<b>Presented by:</b>", make_body_style()), Paragraph("Rushikesh Kunisetty", make_body_style())],
-        [Paragraph("<b>Student ID:</b>", make_body_style()), Paragraph("23MH1A4930", make_body_style())],
-        [Paragraph("<b>Date:</b>", make_body_style()), Paragraph("February 11, 2026", make_body_style())]
+        ['Presented by:', 'Rushikesh Kunisetty'],
+        ['Student ID:', '23MH1A4930'],
+        ['Date:', 'February 11, 2026']
     ]
     info_table = Table(info_data, colWidths=[1.6*inch, 4*inch], hAlign='CENTER')
     info_table.setStyle(TableStyle([
         ('FONTSIZE', (0,0), (-1,-1), 11),
+        ('FONTNAME', (0,0), (0,-1), 'Helvetica-Bold'),
         ('BOTTOMPADDING', (0,0), (-1,-1), 6),
         ('TOPPADDING', (0,0), (-1,-1), 6),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+        ('ALIGN', (0,0), (-1,-1), 'CENTER'),
     ]))
     story.append(info_table)
     
@@ -155,17 +168,19 @@ def create_presentation():
     
     # URLs
     url_data = [
-        [Paragraph("<b>GitHub Repository:</b>", make_body_style()), 
-         Paragraph("<font color='#2563eb' face='Courier' size='9'>https://github.com/Rushikesh-5706/ecommerce-churn-prediction</font>", make_body_style())],
-        [Paragraph("<b>Live Application:</b>", make_body_style()), 
-         Paragraph("<font color='#2563eb' face='Courier' size='9'>https://ecommerce-churn-prediction-rushi5706.streamlit.app/</font>", make_body_style())]
+        ['GitHub Repository:', 'https://github.com/Rushikesh-5706/ecommerce-churn-prediction'],
+        ['Live Application:', 'https://ecommerce-churn-prediction-rushi5706.streamlit.app/']
     ]
     url_table = Table(url_data, colWidths=[1.6*inch, 5*inch], hAlign='CENTER')
     url_table.setStyle(TableStyle([
-        ('FONTSIZE', (0,0), (-1,-1), 10),
+        ('FONTSIZE', (0,0), (-1,-1), 9),
+        ('FONTNAME', (0,0), (0,-1), 'Helvetica-Bold'),
+        ('FONTNAME', (1,0), (1,-1), 'Courier'),
+        ('TEXTCOLOR', (1,0), (1,-1), BLUE),
         ('BOTTOMPADDING', (0,0), (-1,-1), 6),
         ('TOPPADDING', (0,0), (-1,-1), 6),
         ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+        ('ALIGN', (0,0), (-1,-1), 'CENTER'),
     ]))
     story.append(url_table)
     
@@ -218,6 +233,7 @@ def create_presentation():
     elements = []
     elements.append(Paragraph("<b>UCI Online Retail II Dataset - Comprehensive E-Commerce Transaction Data</b>", subheading_style))
     
+    cell_style = make_table_cell_style(9)
     dataset_data = [
         ['Attribute', 'Details'],
         ['Data Source', 'UCI Machine Learning Repository (Public Domain)'],
@@ -225,7 +241,7 @@ def create_presentation():
         ['Time Period', 'December 2009 - December 2010 (12 months)'],
         ['Unique Customers', '3,213 (post-cleaning)'],
         ['Geographic Coverage', '38 international markets'],
-        ['Features', 'InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country']
+        [Paragraph('<b>Features</b>', cell_style), Paragraph('InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country', cell_style)]
     ]
     dataset_table = Table(dataset_data, colWidths=[2.2*inch, 4.6*inch])
     dataset_table.setStyle(TableStyle([
@@ -237,10 +253,12 @@ def create_presentation():
         ('PADDINGTOP', (0,0), (-1,0), 10),
         ('BACKGROUND', (0,1), (-1,-1), LIGHT_BLUE),
         ('GRID', (0,0), (-1,-1), 0.5, colors.grey),
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+        ('VALIGN', (0,0), (-1,-1), 'TOP'),
+        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
         ('PADDINGTOP', (0,1), (-1,-1), 6),
         ('PADDINGBOTTOM', (0,1), (-1,-1), 6),
         ('LEFTPADDING', (0,0), (-1,-1), 8),
+        ('RIGHTPADDING', (0,0), (-1,-1), 8),
     ]))
     elements.append(dataset_table)
     
@@ -260,14 +278,15 @@ def create_presentation():
     elements = []
     elements.append(Paragraph("<b>Rigorous 4-Step Quality Assurance Process</b>", subheading_style))
     
+    cell_style = make_table_cell_style(8)
     cleaning_data = [
         ['Challenge', 'Impact', 'Solution Applied', 'Outcome'],
-        ['Missing CustomerIDs', '107,188 unusable rows', 'Removed all null customer records', '342,273 valid transactions'],
-        ['Cancelled Orders', '9,288 negative quantities', 'Excluded all return transactions', 'Clean purchase history'],
-        ['Statistical Outliers', 'Bulk buyers skewing distributions', 'Removed top 1% extreme values', 'Normalized distribution'],
-        ['Invalid Prices', 'Negative/zero price entries', 'Applied strict price validation', '100% valid pricing data']
+        [Paragraph('Missing CustomerIDs', cell_style), Paragraph('107,188 unusable rows', cell_style), Paragraph('Removed all null customer records', cell_style), Paragraph('342,273 valid transactions', cell_style)],
+        [Paragraph('Cancelled Orders', cell_style), Paragraph('9,288 negative quantities', cell_style), Paragraph('Excluded all return transactions', cell_style), Paragraph('Clean purchase history', cell_style)],
+        [Paragraph('Statistical Outliers', cell_style), Paragraph('Bulk buyers skewing distributions', cell_style), Paragraph('Removed top 1% extreme values', cell_style), Paragraph('Normalized distribution', cell_style)],
+        [Paragraph('Invalid Prices', cell_style), Paragraph('Negative/zero price entries', cell_style), Paragraph('Applied strict price validation', cell_style), Paragraph('100% valid pricing data', cell_style)]
     ]
-    cleaning_table = Table(cleaning_data, colWidths=[1.6*inch, 1.55*inch, 1.75*inch, 1.9*inch])
+    cleaning_table = Table(cleaning_data, colWidths=[1.6*inch, 1.6*inch, 1.8*inch, 1.8*inch])
     cleaning_table.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), TABLE_HEADER),
         ('TEXTCOLOR', (0,0), (-1,0), NAVY),
@@ -277,7 +296,8 @@ def create_presentation():
         ('PADDINGTOP', (0,0), (-1,0), 9),
         ('BACKGROUND', (0,1), (-1,-1), LIGHT_BLUE),
         ('GRID', (0,0), (-1,-1), 0.5, colors.grey),
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+        ('VALIGN', (0,0), (-1,-1), 'TOP'),
+        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
         ('PADDINGTOP', (0,1), (-1,-1), 6),
         ('PADDINGBOTTOM', (0,1), (-1,-1), 6),
         ('LEFTPADDING', (0,0), (-1,-1), 6),
@@ -301,14 +321,15 @@ def create_presentation():
     elements = []
     elements.append(Paragraph("<b>Multi-Dimensional Feature Creation: RFM + Behavioral + Temporal Analysis</b>", subheading_style))
     
+    cell_style = make_table_cell_style(8)
     feature_data = [
         ['Category', 'Features Created', 'Business Rationale'],
-        ['RFM Core Metrics', 'Recency, Frequency, Monetary Value', 'Fundamental customer value and engagement indicators'],
-        ['Temporal Patterns', 'Purchase Velocity, Avg Gap Between Orders, Days Since First Purchase', 'Detect changes in shopping behavior over time'],
-        ['Product Diversity', 'Unique Products Purchased, Category Count, Average Basket Price', 'Differentiate casual vs. committed customers'],
-        ['Trend Analysis', 'Recency Trend, Monetary Trend, Frequency Trend', 'Identify declining engagement early warning signals']
+        [Paragraph('RFM Core Metrics', cell_style), Paragraph('Recency, Frequency, Monetary Value', cell_style), Paragraph('Fundamental customer value and engagement indicators', cell_style)],
+        [Paragraph('Temporal Patterns', cell_style), Paragraph('Purchase Velocity, Avg Gap Between Orders, Days Since First Purchase', cell_style), Paragraph('Detect changes in shopping behavior over time', cell_style)],
+        [Paragraph('Product Diversity', cell_style), Paragraph('Unique Products Purchased, Category Count, Average Basket Price', cell_style), Paragraph('Differentiate casual vs. committed customers', cell_style)],
+        [Paragraph('Trend Analysis', cell_style), Paragraph('Recency Trend, Monetary Trend, Frequency Trend', cell_style), Paragraph('Identify declining engagement early warning signals', cell_style)]
     ]
-    feature_table = Table(feature_data, colWidths=[1.7*inch, 2.3*inch, 2.8*inch])
+    feature_table = Table(feature_data, colWidths=[1.7*inch, 2.4*inch, 2.7*inch])
     feature_table.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), TABLE_HEADER),
         ('TEXTCOLOR', (0,0), (-1,0), NAVY),
@@ -318,10 +339,12 @@ def create_presentation():
         ('PADDINGTOP', (0,0), (-1,0), 9),
         ('BACKGROUND', (0,1), (-1,-1), LIGHT_BLUE),
         ('GRID', (0,0), (-1,-1), 0.5, colors.grey),
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+        ('VALIGN', (0,0), (-1,-1), 'TOP'),
+        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
         ('PADDINGTOP', (0,1), (-1,-1), 6),
         ('PADDINGBOTTOM', (0,1), (-1,-1), 6),
         ('LEFTPADDING', (0,0), (-1,-1), 7),
+        ('RIGHTPADDING', (0,0), (-1,-1), 7),
     ]))
     elements.append(feature_table)
     
@@ -570,14 +593,15 @@ def create_presentation():
     elements = []
     elements.append(Paragraph("<b>Technical Challenges Overcome During Development</b>", subheading_style))
     
+    cell_style = make_table_cell_style(7.5)
     learnings_data = [
         ['Challenge Faced', 'Technical Impact', 'Solution Implemented', 'Result Achieved'],
-        ['High natural churn (42%)', 'Difficult signal separation from noise', 'Optimized observation window to 65 days', 'Churn rate stabilized at 41.92%'],
-        ['Severe class imbalance', 'Model bias toward majority class', 'Applied SMOTE oversampling technique', '+2% ROC-AUC improvement'],
-        ['No ground truth labels', 'Unable to validate predictions', 'Business logic validation with stakeholders', 'Domain-aligned definition'],
-        ['Feature complexity', '100+ potential candidate features', 'Iterative RFM + correlation analysis', 'Reduced to 29 high-signal features']
+        [Paragraph('High natural churn (42%)', cell_style), Paragraph('Difficult signal separation from noise', cell_style), Paragraph('Optimized observation window to 65 days', cell_style), Paragraph('Churn rate stabilized at 41.92%', cell_style)],
+        [Paragraph('Severe class imbalance', cell_style), Paragraph('Model bias toward majority class', cell_style), Paragraph('Applied SMOTE oversampling technique', cell_style), Paragraph('+2% ROC-AUC improvement', cell_style)],
+        [Paragraph('No ground truth labels', cell_style), Paragraph('Unable to validate predictions', cell_style), Paragraph('Business logic validation with stakeholders', cell_style), Paragraph('Domain-aligned definition', cell_style)],
+        [Paragraph('Feature complexity', cell_style), Paragraph('100+ potential candidate features', cell_style), Paragraph('Iterative RFM + correlation analysis', cell_style), Paragraph('Reduced to 29 high-signal features', cell_style)]
     ]
-    learnings_table = Table(learnings_data, colWidths=[1.55*inch, 1.55*inch, 1.75*inch, 1.95*inch])
+    learnings_table = Table(learnings_data, colWidths=[1.65*inch, 1.65*inch, 1.75*inch, 1.75*inch])
     learnings_table.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), TABLE_HEADER),
         ('TEXTCOLOR', (0,0), (-1,0), NAVY),
@@ -587,7 +611,8 @@ def create_presentation():
         ('PADDINGTOP', (0,0), (-1,0), 8),
         ('BACKGROUND', (0,1), (-1,-1), LIGHT_BLUE),
         ('GRID', (0,0), (-1,-1), 0.5, colors.grey),
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+        ('VALIGN', (0,0), (-1,-1), 'TOP'),
+        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
         ('PADDINGTOP', (0,1), (-1,-1), 5),
         ('PADDINGBOTTOM', (0,1), (-1,-1), 5),
         ('LEFTPADDING', (0,0), (-1,-1), 5),

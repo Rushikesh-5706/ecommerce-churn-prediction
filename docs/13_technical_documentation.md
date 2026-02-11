@@ -80,7 +80,7 @@ upper_bound = Q3 + 1.5 * IQR
 
 **Temporal Split Strategy**:
 - **Training Period**: 2009-12-01 to 2010-09-09 (283 days)
-- **Observation Period**: 2010-09-10 to 2010-11-14 (65 days)
+- **Observation Period**: 2010-09-10 to 2010-12-09 (90 days)
 - **Churn Definition**: Purchased in training BUT NOT in observation
 
 **Feature Categories** (29 features total):

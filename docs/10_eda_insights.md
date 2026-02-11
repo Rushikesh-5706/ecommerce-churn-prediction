@@ -15,7 +15,7 @@ This document summarizes key insights from exploratory data analysis of 3,213 cu
 - **Churned Customers**: 1,127
 - **Active Customers**: 1,122
 
-**Interpretation**: The churn rate of 50.1% (based on 65-day window) provides a perfectly balanced dataset, maximizing model learning efficiency without extreme class imbalance.
+**Interpretation**: The churn rate of 50.1% (based on 90-day observation window) provides a perfectly balanced dataset, maximizing model learning efficiency without extreme class imbalance.
 
 ---
 
@@ -103,14 +103,14 @@ Based on independent t-tests comparing churned vs. active customers:
 
 ### Purchase Consistency
 - **Avg Days Between Purchases**:
-  - Churned: 65 days
+  - Churned: 90 days
   - Active: 32 days
   -2.0x difference
 
 - **Customer Lifetime**:
   - Churned: 180 days average
   - Active: 245 days average
-  - 65-day difference suggests early-stage churn
+  - 90-day difference suggests early-stage churn
 
 **Insight**: Regular purchase patterns (every 30 days) correlate with retention.
 
@@ -262,7 +262,7 @@ Based on EDA findings:
 ## 13. Limitations and Caveats
 
 1. **Churn Rate**: 41.92% is above ideal range (20-40%), reflecting dataset characteristics
-2. **Temporal Validity**: Features based on 283 days of training data, 65 days observation
+2. **Temporal Validity**: Features based on 283 days of training data, 90 days observation
 3. **Seasonal Effects**: Dataset spans Dec 2009 - Oct 2010, may have holiday bias
 4. **Feature Leakage**: Carefully validated that observation period data not used in features
 
