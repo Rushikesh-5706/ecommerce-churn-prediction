@@ -1,0 +1,56 @@
+============================================================
+UCI ONLINE RETAIL DATASET - DATA PROFILE
+============================================================
+Generated: 2026-02-11 16:20:24.747574
+============================================================
+
+DATASET SHAPE
+------------------------------------------------------------
+Rows: 525,461
+Columns: 8
+
+COLUMN INFORMATION
+------------------------------------------------------------
+Column Name          Data Type       Non-Null Count 
+------------------------------------------------------------
+InvoiceNo            object                 525,461
+StockCode            object                 525,461
+Description          object                 522,533
+Quantity             int64                  525,461
+InvoiceDate          object                 525,461
+UnitPrice            float64                525,461
+CustomerID           float64                417,534
+Country              object                 525,461
+
+MEMORY USAGE
+------------------------------------------------------------
+Total: 169.92 MB
+
+FIRST 10 ROWS
+------------------------------------------------------------
+  InvoiceNo StockCode                          Description  Quantity          InvoiceDate  UnitPrice  CustomerID         Country
+0    489434     85048  15CM CHRISTMAS GLASS BALL 20 LIGHTS        12  2009-12-01 07:45:00       6.95     13085.0  United Kingdom
+1    489434    79323P                   PINK CHERRY LIGHTS        12  2009-12-01 07:45:00       6.75     13085.0  United Kingdom
+2    489434    79323W                  WHITE CHERRY LIGHTS        12  2009-12-01 07:45:00       6.75     13085.0  United Kingdom
+3    489434     22041         RECORD FRAME 7" SINGLE SIZE         48  2009-12-01 07:45:00       2.10     13085.0  United Kingdom
+4    489434     21232       STRAWBERRY CERAMIC TRINKET BOX        24  2009-12-01 07:45:00       1.25     13085.0  United Kingdom
+5    489434     22064           PINK DOUGHNUT TRINKET POT         24  2009-12-01 07:45:00       1.65     13085.0  United Kingdom
+6    489434     21871                  SAVE THE PLANET MUG        24  2009-12-01 07:45:00       1.25     13085.0  United Kingdom
+7    489434     21523   FANCY FONT HOME SWEET HOME DOORMAT        10  2009-12-01 07:45:00       5.95     13085.0  United Kingdom
+8    489435     22350                            CAT BOWL         12  2009-12-01 07:46:00       2.55     13085.0  United Kingdom
+9    489435     22349       DOG BOWL , CHASING BALL DESIGN        12  2009-12-01 07:46:00       3.75     13085.0  United Kingdom
+
+BASIC STATISTICS
+------------------------------------------------------------
+       InvoiceNo StockCode                         Description       Quantity          InvoiceDate      UnitPrice     CustomerID         Country
+count     525461    525461                              522533  525461.000000               525461  525461.000000  417534.000000          525461
+unique     28816      4632                                4681            NaN                25296            NaN            NaN              40
+top       537434    85123A  WHITE HANGING HEART T-LIGHT HOLDER            NaN  2010-12-06 16:57:00            NaN            NaN  United Kingdom
+freq         675      3516                                3549            NaN                  675            NaN            NaN          485852
+mean         NaN       NaN                                 NaN      10.337667                  NaN       4.688834   15360.645478             NaN
+std          NaN       NaN                                 NaN     107.424110                  NaN     146.126914    1680.811316             NaN
+min          NaN       NaN                                 NaN   -9600.000000                  NaN  -53594.360000   12346.000000             NaN
+25%          NaN       NaN                                 NaN       1.000000                  NaN       1.250000   13983.000000             NaN
+50%          NaN       NaN                                 NaN       3.000000                  NaN       2.100000   15311.000000             NaN
+75%          NaN       NaN                                 NaN      10.000000                  NaN       4.210000   16799.000000             NaN
+max          NaN       NaN                                 NaN   19152.000000                  NaN   25111.090000   18287.000000             NaN

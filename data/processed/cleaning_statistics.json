@@ -14,13 +14,13 @@
         "Country": 0
     },
     "missing_values_after": {
-        "Invoice": 0,
+        "InvoiceNo": 0,
         "StockCode": 0,
         "Description": 0,
         "Quantity": 0,
         "InvoiceDate": 0,
-        "Price": 0,
-        "Customer ID": 0,
+        "UnitPrice": 0,
+        "CustomerID": 0,
         "Country": 0,
         "TotalPrice": 0,
         "Year": 0,
