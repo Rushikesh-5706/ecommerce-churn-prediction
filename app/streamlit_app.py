@@ -199,6 +199,13 @@ def main():
                     'FrequencyScore': 3,
                     'MonetaryScore': 3,
                     'RFM_Score': 9,
+                    
+                    # Missing Interaction/Trend Features (Crucial for correct prediction)
+                    'FrequencyTrend': 1.0,  # Assume stable behavior
+                    'SpendTrend': 1.0,      # Assume stable spending
+                    'Freq_x_Spend': frequency * total_spent,
+                    'Active_Freq': frequency / (recency + 1),
+                    'Spend_per_Item': total_spent / (total_items + 1) if total_items > 0 else 0,
                 }
                 
                 # Add segment one-hot encoding
