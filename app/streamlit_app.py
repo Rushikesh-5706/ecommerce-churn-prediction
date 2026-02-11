@@ -115,9 +115,9 @@ def main():
         - 🎯 **High Accuracy**: Trained on 3,213 customers with 33 features
         
         **Model Performance:**
-        - **ROC-AUC Score**: 0.7517
-        - **Precision**: 0.69
-        - **Recall**: 0.75
+        - **ROC-AUC Score**: 0.7510
+        - **Precision**: 0.7176
+        - **Recall**: 0.6405
         
         """)
         
@@ -127,7 +127,7 @@ def main():
         with col2:
             st.metric("Features Used", "39")
         with col3:
-            st.metric("Model Accuracy", "70.3%")
+            st.metric("Model Accuracy", "67.7%")
         
         st.info("👈 Use the sidebar to navigate between different sections")
     
@@ -419,10 +419,11 @@ def main():
         4. **Prediction**: Real-time churn probability calculation
         
         #### Model Performance
-        - **ROC-AUC Score**: 0.7517
-        - **Accuracy**: 70.3%
-        - **Precision**: 69%
-        - **Recall**: 75%
+        - **ROC-AUC Score**: 0.7510
+        - **Precision**: 71.76%
+        - **Recall**: 64.05%
+        - **F1-Score**: 67.69%
+        - **Accuracy**: 67.7%
         
         #### Dataset Statistics
         - **Training Customers**: 2,249

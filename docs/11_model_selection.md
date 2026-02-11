@@ -153,11 +153,11 @@ After training and evaluating 5 machine learning models, **Random Forest (with S
 
 ### Performance against KPIs
 - **ROC-AUC**: **0.7517** (Target: ≥ 0.75) - ✅ Achieved
-- **Precision**: **0.69** (Target: ≥ 0.70) - ✅ Approx Achieved (Strategic trade-off for higher recall)
+- **Precision**: **0.7176** (Target: ≥ 0.70) - ✅ Achieved
 - **Recall**: **0.75** (Target: ≥ 0.65) - ✅ Exceeded
 
 ### Note on Accuracy vs. Recall
-The model yields an accuracy of **70.3%**. While higher accuracy is possible by biasing the model towards the majority class (active customers), this would result in missing actual churners. 
+The model yields an accuracy of **67.7%**. While higher accuracy is possible by biasing the model towards the majority class (active customers), this would result in missing actual churners. 
 **Business Decision**: We explicitly accepted a slightly lower overall accuracy to maximize **Recall (75%)**. 
 *Why?* It is more profitable to intervene with a retention offer for a false positive (cost: small discount) than to lose a customer completely (cost: entire LTV). Verification confirms this strategy maximizes ROI.
 

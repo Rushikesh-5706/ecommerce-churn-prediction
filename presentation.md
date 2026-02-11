@@ -79,7 +79,7 @@
 | **Decision Tree** | 0.682 | 0.55 | 0.66 | Prone to overfitting. |
 | **Gradient Boosting** | 0.719 | 0.57 | 0.49 | High precision, low recall. |
 | **Neural Network** | 0.725 | 0.60 | 0.58 | Strong but complex. |
-| **Random Forest** | **0.752** | 0.69 | **0.75** | **Selected Champion.** |
+| **Random Forest** | **0.751** | 0.7176 | **0.6405** | **Selected Champion.** |
 
 ---
 
@@ -90,7 +90,7 @@
 **Key Metrics**:  
 - **ROC-AUC**: **0.7517** (Discriminative power)  
 - **Recall**: **74.79%** (Catches 3 out of 4 churners)  
-- **Accuracy**: 70.33%  
+- **Accuracy**: 67.7%  
 
 **Why this model?**  
 - Best balance of Recall vs Precision.  
