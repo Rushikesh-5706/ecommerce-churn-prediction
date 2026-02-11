@@ -1,0 +1,15 @@
+{
+    "training_period": {
+        "start": "2009-12-01",
+        "end": "2010-09-09",
+        "days": 283
+    },
+    "observation_period": {
+        "start": "2010-09-10",
+        "end": "2010-12-09",
+        "days": 90
+    },
+    "total_features": 36,
+    "churn_rate": 42.2,
+    "total_customers": 3213
+}
