@@ -53,8 +53,9 @@ def evaluate_model(model, X, y, dataset_name=""):
     """
     Evaluate model and return metrics
     """
-    y_pred = model.predict(X)
     y_pred_proba = model.predict_proba(X)[:, 1]
+    # Use custom threshold to boost precision (0.53)
+    y_pred = (y_pred_proba >= 0.53).astype(int)
     
     metrics = {
         'accuracy': accuracy_score(y, y_pred),
@@ -121,10 +122,10 @@ def train_random_forest(X_train, y_train, X_val, y_val):
     print("="*60)
     
     model = RandomForestClassifier(
-        n_estimators=100,
-        max_depth=15,
+        n_estimators=200,
+        max_depth=8,
         min_samples_split=20,
-        min_samples_leaf=10,
+        min_samples_leaf=15,
         random_state=42,
         class_weight='balanced',
         n_jobs=-1
@@ -306,11 +307,33 @@ def main():
     print("="*60)
     print(f"\nBest Model: {best_model_name}")
     print(f"Best Val ROC-AUC: {comparison_df.iloc[0]['Val_ROC_AUC']:.4f}")
-    print("\nNext steps:")
-    print("1. Evaluate best model on test set")
-    print("2. Create visualizations")
-    print("3. Perform cross-validation")
-    print("="*60 + "\n")
+    print("\n" + "="*60)
+    print("FINAL TEST EVALUATION")
+    print("="*60)
+    
+    best_model = models[best_model_name]
+    test_metrics = evaluate_model(best_model, X_test, y_test, f"Test Set ({best_model_name})")
+    
+    # Generate submission.json
+    submission = {
+        "student_id": "DS2026001",
+        "project_name": "Customer Churn Prediction System",
+        "repository_url": "https://github.com/Rushikesh-5706/ecommerce-churn-prediction",
+        "streamlit_app_url": "https://ecommerce-churn-prediction-rushi5706.streamlit.app/",
+        "model_metrics": {
+            "roc_auc": round(test_metrics['roc_auc'], 4),
+            "precision": round(test_metrics['precision'], 4),
+            "recall": round(test_metrics['recall'], 4),
+            "f1_score": round(test_metrics['f1'], 4)
+        },
+        "deployment_status": "active"
+    }
+    
+    with open('submission.json', 'w') as f:
+        json.dump(submission, f, indent=4)
+    
+    print(f"\n✓ Generated submission.json with metrics: AUC={submission['model_metrics']['roc_auc']}, P={submission['model_metrics']['precision']}, R={submission['model_metrics']['recall']}")
 
 if __name__ == "__main__":
     main()
+
