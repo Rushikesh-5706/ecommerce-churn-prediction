@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  churn-prediction:
+  data-science-app:
     build: .
     container_name: churn-prediction-app
     ports:
