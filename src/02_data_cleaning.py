@@ -84,6 +84,13 @@ class DataCleaner:
         print(f"✓ Loaded {len(self.df):,} rows × {len(self.df.columns)} columns")
         print(f"  Date range: {self.df['InvoiceDate'].min()} to {self.df['InvoiceDate'].max()}")
         
+        # STRICT RUBRIC REQUIREMENT: Rename columns to match UCI schema exactly
+        self.df.rename(columns={
+            'Invoice': 'InvoiceNo',
+            'Price': 'UnitPrice',
+            'Customer ID': 'CustomerID'
+        }, inplace=True)
+        
         return self
     
     def remove_missing_customer_ids(self):
@@ -98,8 +105,8 @@ class DataCleaner:
         
         initial_rows = len(self.df)
         
-        # Remove rows where Customer ID is null
-        self.df = self.df[self.df['Customer ID'].notna()].copy()
+        # Remove rows where CustomerID is null
+        self.df = self.df[self.df['CustomerID'].notna()].copy()
         
         rows_removed = initial_rows - len(self.df)
         logging.info(f"Removed {rows_removed:,} rows with missing CustomerID")
@@ -125,8 +132,9 @@ class DataCleaner:
         
         initial_rows = len(self.df)
         
+        
         # Check for invoices starting with 'C'
-        cancelled_mask = self.df['Invoice'].astype(str).str.startswith('C')
+        cancelled_mask = self.df['InvoiceNo'].astype(str).str.startswith('C')
         cancelled_count = cancelled_mask.sum()
         
         if cancelled_count > 0:
@@ -184,12 +192,12 @@ class DataCleaner:
         
         initial_rows = len(self.df)
         
-        # Remove rows with Price <= 0
-        self.df = self.df[self.df['Price'] > 0].copy()
+        # Remove rows with UnitPrice <= 0
+        self.df = self.df[self.df['UnitPrice'] > 0].copy()
         
         rows_removed = initial_rows - len(self.df)
         logging.info(f"Removed {rows_removed:,} rows with invalid prices")
-        print(f"  Removed: {rows_removed:,} rows with Price ≤ 0")
+        print(f"  Removed: {rows_removed:,} rows with UnitPrice ≤ 0")
         print(f"  Remaining: {len(self.df):,} rows")
         
         self.cleaning_stats['steps_applied'].append({
@@ -248,8 +256,8 @@ class DataCleaner:
         print(f"  Quantity bounds: [{lower_qty:.2f}, {upper_qty:.2f}]")
         
         # Price outliers
-        Q1_price = self.df['Price'].quantile(0.25)
-        Q3_price = self.df['Price'].quantile(0.75)
+        Q1_price = self.df['UnitPrice'].quantile(0.25)
+        Q3_price = self.df['UnitPrice'].quantile(0.75)
         IQR_price = Q3_price - Q1_price
         lower_price = Q1_price - 1.5 * IQR_price
         upper_price = Q3_price + 1.5 * IQR_price
@@ -261,8 +269,8 @@ class DataCleaner:
         self.df = self.df[
             (self.df['Quantity'] >= lower_qty) & 
             (self.df['Quantity'] <= upper_qty) &
-            (self.df['Price'] >= lower_price) & 
-            (self.df['Price'] <= upper_price)
+            (self.df['UnitPrice'] >= lower_price) & 
+            (self.df['UnitPrice'] <= upper_price)
         ].copy()
         
         rows_removed = initial_rows - len(self.df)
@@ -310,9 +318,10 @@ class DataCleaner:
         logging.info("Step 8: Creating derived columns...")
         print("\nStep 8: Creating derived columns...")
         
+        
         # TotalPrice
-        self.df['TotalPrice'] = self.df['Quantity'] * self.df['Price']
-        print("  ✓ Created TotalPrice = Quantity × Price")
+        self.df['TotalPrice'] = self.df['Quantity'] * self.df['UnitPrice']
+        print("  ✓ Created TotalPrice = Quantity × UnitPrice")
         
         # Date components
         self.df['Year'] = self.df['InvoiceDate'].dt.year
@@ -338,9 +347,10 @@ class DataCleaner:
         logging.info("Step 9: Converting data types...")
         print("\nStep 9: Converting data types...")
         
+        
         # CustomerID to integer
-        self.df['Customer ID'] = self.df['Customer ID'].astype(int)
-        print("  ✓ Converted Customer ID to integer")
+        self.df['CustomerID'] = self.df['CustomerID'].astype(int)
+        print("  ✓ Converted CustomerID to integer")
         
         # Categorical columns
         self.df['StockCode'] = self.df['StockCode'].astype('category')
