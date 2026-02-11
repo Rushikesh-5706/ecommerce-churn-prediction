@@ -10,6 +10,300 @@
         "days": 90
     },
     "total_features": 36,
-    "churn_rate": 42.2,
-    "total_customers": 3213
+    "churn_rate": 0.5011,
+    "total_customers": 3213,
+    "feature_categories": {
+        "rfm": 6,
+        "behavioral": 8,
+        "temporal": 7,
+        "product": 5,
+        "derived": 10
+    },
+    "training_cutoff": "2010-09-09",
+    "observation_end": "2010-11-13",
+    "training_customers": 3213,
+    "churned_customers": 1610,
+    "active_customers": 1603,
+    "features": [
+        {
+            "name": "Recency",
+            "type": "numeric",
+            "description": "Feature Recency",
+            "min": 0.0,
+            "max": 281.0,
+            "mean": 93.42794895736073
+        },
+        {
+            "name": "Frequency",
+            "type": "numeric",
+            "description": "Feature Frequency",
+            "min": 1.0,
+            "max": 105.0,
+            "mean": 3.4382197323373793
+        },
+        {
+            "name": "TotalSpent",
+            "type": "numeric",
+            "description": "Feature TotalSpent",
+            "min": 0.95,
+            "max": 55109.91,
+            "mean": 885.8555403050108
+        },
+        {
+            "name": "AvgOrderValue",
+            "type": "numeric",
+            "description": "Feature AvgOrderValue",
+            "min": 0.95,
+            "max": 1988.91,
+            "mean": 247.74955860190835
+        },
+        {
+            "name": "UniqueProducts",
+            "type": "numeric",
+            "description": "Feature UniqueProducts",
+            "min": 1.0,
+            "max": 1159.0,
+            "mean": 48.30594460006225
+        },
+        {
+            "name": "TotalItems",
+            "type": "numeric",
+            "description": "Feature TotalItems",
+            "min": 1.0,
+            "max": 28255.0,
+            "mean": 483.35076252723314
+        },
+        {
+            "name": "AvgDaysBetweenPurchases",
+            "type": "numeric",
+            "description": "Feature AvgDaysBetweenPurchases",
+            "min": 0.0,
+            "max": 999.0,
+            "mean": 425.73086572541825
+        },
+        {
+            "name": "AvgBasketSize",
+            "type": "numeric",
+            "description": "Feature AvgBasketSize",
+            "min": 1.0,
+            "max": 1239.0,
+            "mean": 139.88620397150314
+        },
+        {
+            "name": "StdBasketSize",
+            "type": "numeric",
+            "description": "Feature StdBasketSize",
+            "min": 0.0,
+            "max": 1018.2337649086285,
+            "mean": 46.14898823091112
+        },
+        {
+            "name": "MaxBasketSize",
+            "type": "numeric",
+            "description": "Feature MaxBasketSize",
+            "min": 1.0,
+            "max": 2589.0,
+            "mean": 195.75412387177093
+        },
+        {
+            "name": "PreferredDay",
+            "type": "numeric",
+            "description": "Feature PreferredDay",
+            "min": 0.0,
+            "max": 6.0,
+            "mean": 2.5897914721444133
+        },
+        {
+            "name": "PreferredHour",
+            "type": "numeric",
+            "description": "Feature PreferredHour",
+            "min": 7.0,
+            "max": 20.0,
+            "mean": 12.600684718331777
+        },
+        {
+            "name": "CountryDiversity",
+            "type": "numeric",
+            "description": "Feature CountryDiversity",
+            "min": 1.0,
+            "max": 2.0,
+            "mean": 1.0006224712107066
+        },
+        {
+            "name": "CustomerLifetimeDays",
+            "type": "numeric",
+            "description": "Feature CustomerLifetimeDays",
+            "min": 0.0,
+            "max": 280.0,
+            "mean": 88.17491441020853
+        },
+        {
+            "name": "PurchaseVelocity",
+            "type": "numeric",
+            "description": "Feature PurchaseVelocity",
+            "min": 0.007380073800738007,
+            "max": 4.0,
+            "mean": 0.4626043725314456
+        },
+        {
+            "name": "Purchases_Last30Days",
+            "type": "numeric",
+            "description": "Feature Purchases_Last30Days",
+            "min": 0.0,
+            "max": 15.0,
+            "mean": 0.353874883286648
+        },
+        {
+            "name": "Purchases_Last60Days",
+            "type": "numeric",
+            "description": "Feature Purchases_Last60Days",
+            "min": 0.0,
+            "max": 25.0,
+            "mean": 0.7145969498910676
+        },
+        {
+            "name": "Purchases_Last90Days",
+            "type": "numeric",
+            "description": "Feature Purchases_Last90Days",
+            "min": 0.0,
+            "max": 47.0,
+            "mean": 1.1014628073451602
+        },
+        {
+            "name": "Spend_Last30Days",
+            "type": "numeric",
+            "description": "Feature Spend_Last30Days",
+            "min": 0.0,
+            "max": 6304.56,
+            "mean": 90.76907563025212
+        },
+        {
+            "name": "Spend_Last90Days",
+            "type": "numeric",
+            "description": "Feature Spend_Last90Days",
+            "min": 0.0,
+            "max": 20880.2,
+            "mean": 272.96749455337687
+        },
+        {
+            "name": "FrequencyTrend",
+            "type": "numeric",
+            "description": "Feature FrequencyTrend",
+            "min": 0.0,
+            "max": 2.9469548133595285,
+            "mean": 0.5018460544890523
+        },
+        {
+            "name": "SpendTrend",
+            "type": "numeric",
+            "description": "Feature SpendTrend",
+            "min": 0.0,
+            "max": 2.999864253393665,
+            "mean": 0.531881845500009
+        },
+        {
+            "name": "Freq_x_Spend",
+            "type": "numeric",
+            "description": "Feature Freq_x_Spend",
+            "min": 0.95,
+            "max": 5786540.550000001,
+            "mean": 11080.59334765017
+        },
+        {
+            "name": "Active_Freq",
+            "type": "numeric",
+            "description": "Feature Active_Freq",
+            "min": 0.0035460992907801418,
+            "max": 105.0,
+            "mean": 0.37804118262076625
+        },
+        {
+            "name": "Spend_per_Item",
+            "type": "numeric",
+            "description": "Feature Spend_per_Item",
+            "min": 0.2784,
+            "max": 7.3431372549019605,
+            "mean": 1.9983856569044798
+        },
+        {
+            "name": "ProductDiversityScore",
+            "type": "numeric",
+            "description": "Feature ProductDiversityScore",
+            "min": 0.005441976761288425,
+            "max": 1.0,
+            "mean": 0.15397803420987674
+        },
+        {
+            "name": "AvgUnitPricePreference",
+            "type": "numeric",
+            "description": "Feature AvgUnitPricePreference",
+            "min": 0.29,
+            "max": 7.49,
+            "mean": 2.557030356016015
+        },
+        {
+            "name": "StdUnitPricePreference",
+            "type": "numeric",
+            "description": "Feature StdUnitPricePreference",
+            "min": 0.0,
+            "max": 4.1012193308819755,
+            "mean": 1.526505282277739
+        },
+        {
+            "name": "MinUnitPrice",
+            "type": "numeric",
+            "description": "Feature MinUnitPrice",
+            "min": 0.001,
+            "max": 7.49,
+            "mean": 0.7288235294117648
+        },
+        {
+            "name": "MaxUnitPrice",
+            "type": "numeric",
+            "description": "Feature MaxUnitPrice",
+            "min": 0.29,
+            "max": 7.5,
+            "mean": 6.05420168067227
+        },
+        {
+            "name": "AvgQuantityPerOrder",
+            "type": "numeric",
+            "description": "Feature AvgQuantityPerOrder",
+            "min": 1.0,
+            "max": 27.0,
+            "mean": 8.665210474498547
+        },
+        {
+            "name": "RecencyScore",
+            "type": "numeric",
+            "description": "Feature RecencyScore",
+            "min": 1.0,
+            "max": 4.0,
+            "mean": 2.50046685340803
+        },
+        {
+            "name": "FrequencyScore",
+            "type": "numeric",
+            "description": "Feature FrequencyScore",
+            "min": 1.0,
+            "max": 4.0,
+            "mean": 2.49953314659197
+        },
+        {
+            "name": "MonetaryScore",
+            "type": "numeric",
+            "description": "Feature MonetaryScore",
+            "min": 1.0,
+            "max": 4.0,
+            "mean": 2.49953314659197
+        },
+        {
+            "name": "RFM_Score",
+            "type": "numeric",
+            "description": "Feature RFM_Score",
+            "min": 3.0,
+            "max": 12.0,
+            "mean": 7.49953314659197
+        }
+    ]
 }
