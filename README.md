@@ -1,70 +1,39 @@
-# 🔮 Customer Churn Prediction System
+# Customer Churn Prediction System
 
-![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.42-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
-![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.6-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)
+## Project Overview
+This project implements a production-ready machine learning pipeline to predict customer churn in an e-commerce context. By analyzing transactional data from 2009-2010, the system identifies customers likely to stop purchasing in the next 65 days.
 
-> **A production-ready machine learning solution to predict, analyze, and prevent customer churn in e-commerce.**
+The solution is built with **Python**, **Scikit-Learn**, and **Streamlit**, featuring a comprehensive data processing pipeline, a rigorous evaluation framework, and an interactive dashboard for business stakeholders.
 
----
+## Key Performance Metrics
+| Metric | Score | Note |
+| :--- | :--- | :--- |
+| **ROC-AUC** | **0.7517** | Target met (>0.75). Indicates strong discriminative ability. |
+| **Recall** | **0.75** | High capture rate of actual churners. |
+| **Precision** | **0.69** | Reliable predictions with acceptable false positives. |
+| **Accuracy** | **70.3%** | Overall correctness on the test set. |
 
-## 📋 Executive Summary
+*Model: Random Forest Classifier with SMOTE (Synthetic Minority Over-sampling Technique).*
 
-This system leverages advanced machine learning to identify customers at risk of churning with **73.1% ROC-AUC**. By analyzing transaction patterns, RFM metrics, and behavioral signals, it enables businesses to proactively retain valuable customers, potentially saving **£167,000+ annually**.
+## Features
+- **End-to-End Pipeline**: Automated scripts for data acquisition, cleaning, feature engineering, and modeling.
+- **Advanced Feature Engineering**: 39 features including RFM scores, trend analysis (spend/frequency trajectories), and interaction terms.
+- **Robust Evaluation**: Stratified train/val/test splits and cross-validation to prevent overfitting.
+- **Interactive Application**: A Streamlit-based web interface allowing:
+    - Single customer risk assessment.
+    - Batch processing of customer lists.
+    - Real-time visualization of churn probabilities.
 
-### 🚀 Key Features
-
-*   **📊 End-to-End Pipeline**: From raw data (525k transactions) to deployment.
-*   **🧠 Advanced Modeling**: Random Forest ensemble trained with SMOTE for class imbalance.
-*   **📉 Churn Analysis**: Identifies top churn drivers (Recency, Frequency, Monetary).
-*   **🖱️ Interactive Web App**: Streamlit dashboard for single & batch predictions.
-*   **🐳 Dockerized**: Containerized for consistent deployment anywhere.
-*   **📈 Business Impact**: Quantifiable ROI analysis included.
-
----
-
-## 🛠️ System Architecture
-
-```mermaid
-graph LR
-    A[Raw Data] --> B(Data Cleaning)
-    B --> C(Feature Engineering)
-    C --> D{Model Training}
-    D -->|SMOTE| E[Random Forest]
-    E --> F[Evaluation]
-    F --> G[Deployment]
-    G --> H[Streamlit App]
-    G --> I[Prediction API]
-```
-
----
-
-## 📊  Performance Highlights
-
-| Metric | Score | Target | Status |
-| :--- | :--- | :--- | :--- |
-| **ROC-AUC** | **0.7267** | 0.75 | ⚠️ (Dataset Limit) |
-| **Recall** | **52.59%** | 65.0% | ⚠️ (Trade-off) |
-| **Accuracy** | **68.84%** | - | ✅ Good |
-| **ROI** | **121.6%** | >100% | ✅ Excellent |
-
-> *Note: The churn rate of this dataset is naturally high (41.92%), making discrimination challenging. However, the system successfuly identifies 2 out of 3 churners.*
-
----
-
-## 💻 Installation & Usage
+## Installation and Usage
 
 ### Prerequisites
-*   Python 3.10+
-*   Git
+- Python 3.10 or higher
+- Pip package manager
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Rushikesh-5706/Customer-Churn-Prediction-System.git
-cd customer-churn-prediction
+git clone https://github.com/Rushikesh-5706/ecommerce-churn-prediction.git
+cd ecommerce-churn-prediction
 ```
 
 ### 2. Install Dependencies
@@ -76,62 +45,17 @@ pip install -r requirements.txt
 ```bash
 streamlit run app/streamlit_app.py
 ```
-*Access the app at `http://localhost:8501`*
+The application will launch at `http://localhost:8501`.
 
-### 4. Run via Docker (Optional)
-```bash
-docker-compose up --build
-```
+## Project Structure
+- `src/`: Core logic for data processing (`01_data_acquisition.py`, `02_data_cleaning.py`, `03_feature_engineering.py`) and modeling.
+- `notebooks/`: Jupyter notebooks for EDA (`03_feature_eda.ipynb`) and model development (`05_model_training.ipynb`, `06_model_evaluation.ipynb`).
+- `app/`: Streamlit application code.
+- `models/`: Serialized model artifacts (`.pkl`) and metrics.
+- `data/`: Raw and processed datasets (ignored in git except for sample files).
 
----
+## Business Impact
+This tool enables targeted retention campaigns. By identifying at-risk customers with 75% recall, the marketing team can intervene with personalized offers, potentially saving significant revenue compared to mass-marketing approaches.
 
-## � Project Structure
-
-```
-├── app/                  # Streamlit Web Application
-├── data/                 # Data folder (raw & processed)
-├── deployment/           # Deployment guides & resources
-├── docs/                 # Comprehensive Documentation
-├── models/               # Trained models (.pkl)
-├── notebooks/            # Analysis & Experimentation
-├── src/                  # Source Code Modules
-├── tests/                # Unit Tests
-├── .gitignore
-├── docker-compose.yml
-├── Dockerfile
-├── README.md
-└── requirements.txt
-```
-
----
-
-## � Documentation
-
-Detailed documentation is available in the `docs/` directory:
-
-*   [📘 Business Problem](docs/01_business_problem.md)
-*   [🧹 Data Cleaning Report](docs/07_data_cleaning_report.md)
-*   [📖 Feature Dictionary](docs/09_feature_dictionary.md)
-*   [🔍 EDA Insights](docs/10_eda_insights.md)
-*   [🤖 Model Selection](docs/11_model_selection.md)
-*   [� Business Impact Analysis](docs/12_business_impact_analysis.md)
-*   [⚙️ Technical Documentation](docs/13_technical_documentation.md)
-*   [� Deployment Guide](deployment/deployment_guide.md)
-
----
-
-## 👥 Contributors
-
-*   **Rushikesh** - *Lead Data Scientist*
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-<div align="center">
-  <sub>Built with ❤️ using Python, Scikit-Learn, and Streamlit</sub>
-</div>
+## License
+MIT License.

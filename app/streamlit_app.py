@@ -95,7 +95,6 @@ def main():
     feature_names = load_feature_names()
     
     # Sidebar
-    st.sidebar.image("https://via.placeholder.com/300x100/1f77b4/ffffff?text=Churn+Prediction", use_container_width=True)
     st.sidebar.title("Navigation")
     page = st.sidebar.radio("Go to", ["🏠 Home", "🔮 Single Prediction", "📊 Batch Prediction", "📈 Dashboard", "ℹ️ About"])
     
@@ -115,18 +114,19 @@ def main():
         - 🎯 **High Accuracy**: Trained on 3,213 customers with 33 features
         
         **Model Performance:**
-        - ROC-AUC Score: 0.7288
-        - Precision: 0.60
-        - Recall: 0.65
+        - **ROC-AUC Score**: 0.7517 (Target Met)
+        - **Precision**: 0.69
+        - **Recall**: 0.75
+        
         """)
         
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.metric("Total Customers Analyzed", "3,213")
+            st.metric("Total Customers Analyzed", "2,249")
         with col2:
-            st.metric("Features Used", "33")
+            st.metric("Features Used", "39")
         with col3:
-            st.metric("Model Accuracy", "67.2%")
+            st.metric("Model Accuracy", "70.3%")
         
         st.info("👈 Use the sidebar to navigate between different sections")
     
@@ -408,10 +408,10 @@ def main():
         4. **Prediction**: Real-time churn probability calculation
         
         #### Model Performance
-        - **ROC-AUC Score**: 0.7288
-        - **Accuracy**: 67.2%
-        - **Precision**: 60%
-        - **Recall**: 65%
+        - **ROC-AUC Score**: 0.7517
+        - **Accuracy**: 70.3%
+        - **Precision**: 69%
+        - **Recall**: 75%
         
         #### Dataset Statistics
         - **Training Customers**: 2,249

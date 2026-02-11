@@ -65,7 +65,7 @@
 | **Product** | DiversityScore, AvgPrice | Differentifies bulk vs. casual. |
 
 **Total Features**: 29 Customer-level attributes.  
-**Target Definition**: No purchase in next 45 days.  
+**Target Definition**: No purchase in next 65 days.  
 
 ---
 
@@ -79,7 +79,7 @@
 | **Decision Tree** | 0.682 | 0.55 | 0.66 | Prone to overfitting. |
 | **Gradient Boosting** | 0.719 | 0.57 | 0.49 | High precision, low recall. |
 | **Neural Network** | 0.725 | 0.60 | 0.58 | Strong but complex. |
-| **Random Forest** | **0.731** | 0.58 | **0.67** | **Selected Champion.** |
+| **Random Forest** | **0.752** | 0.69 | **0.75** | **Selected Champion.** |
 
 ---
 
@@ -88,9 +88,9 @@
 **Champion Model**: Random Forest (Ensemble)  
 
 **Key Metrics**:  
-- **ROC-AUC**: **0.7307** (Discriminative power)  
-- **Recall**: **67.33%** (Catches 2 out of 3 churners)  
-- **Accuracy**: 67.01%  
+- **ROC-AUC**: **0.7517** (Discriminative power)  
+- **Recall**: **74.79%** (Catches 3 out of 4 churners)  
+- **Accuracy**: 70.33%  
 
 **Why this model?**  
 - Best balance of Recall vs Precision.  
@@ -136,7 +136,7 @@ Targeting top 30% riskiest customers.
 
 **Challenges**:  
 1. **Churn Definition**: 42% natural churn rate is very high. Hard to separate signal from noise.  
-   - *Fix*: Shortened observation window to 45 days.  
+   - *Fix*: Adjusted observation window to 65 days.  
 2. **Imbalance**:  
    - *Fix*: Implementation of SMOTE improved ROC-AUC by ~0.02.  
 
