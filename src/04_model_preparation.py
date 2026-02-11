@@ -29,7 +29,7 @@ def prepare_model_data():
     df = pd.read_csv('data/processed/customer_features.csv')
     
     # 1. Separate ID and Churn
-    X = df.drop(['Customer ID', 'Churn'], axis=1)
+    X = df.drop(['CustomerID', 'Churn'], axis=1)
     y = df['Churn']
     
     # 2. Categorical Encoding
