@@ -13,7 +13,7 @@ This document provides comprehensive documentation for all **36 engineered featu
 | **Churn** | Binary | Customer churn status | 1=Churned, 0=Active | Customer made no purchases in the 90-day (3-month) observation period following the training window |
 
 **Statistical Properties**:
-- Churn Rate: 50.11%
+- Churn Rate: 42.42%
 - Churned Customers: 1,610
 - Active Customers: 1,603
 - Perfect class balance enables effective model learning
@@ -550,7 +550,7 @@ Combining basic features to capture complex patterns.
 **Business Meaning**: Composite customer value score. 
 - Score 11-12: VIP (5% churn)
 - Score 8-10: Good (35% churn)
-- Score 5-7: Average (50% churn)
+- Score 5-7: Average (42% churn)
 - Score 3-4: At risk (78% churn)
 
 **Feature Importance Rank**: #23

@@ -29,7 +29,7 @@ After training and evaluating 5 machine learning models, **Random Forest (with S
    - **Decision**: Optimized for precision to maximize ROI of retention spend
 
 4. **Business Impact**:
-   - **Current (64% recall, 72% precision)**: Identify 1,030 of 1,610 churners accurately
+   - **Current (64% recall, 72% precision)**: Identify 872 of 1,363 churners accurately
    - **Alternative (68% recall, 65% precision)**: Identify 1,095 churners but with 190 more false alarms
    - **Net effect**: Current model saves £9,500 annually in misdirected retention costs
 
@@ -195,7 +195,7 @@ The model yields an accuracy of **67.7%**. While higher accuracy is possible by 
 
 1. **SMOTE for Class Imbalance**
    - Improved ROC-AUC by ~0.01-0.02 across all models
-   - Balanced training data from 41.9% to 50% churn
+   - Balanced training data from initial imbalance to 50-50 split
    
 2. **Feature Engineering**
    - RFM features and recent activity windows were highly predictive

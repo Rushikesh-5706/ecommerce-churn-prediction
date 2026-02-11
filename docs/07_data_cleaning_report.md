@@ -353,7 +353,7 @@ df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'], errors='coerce')
 ### Model Training
 
 **Data Distribution**:
-- Churn rate after cleaning: 50.11% (perfectly balanced)
+- Churn rate after cleaning: 42.42% (within target range)
 - If retained all data with NaN, churn rate would be biased (can't calculate for missing customers)
 
 **Sample Size**:

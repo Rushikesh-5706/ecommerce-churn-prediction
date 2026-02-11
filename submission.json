@@ -112,7 +112,7 @@
     },
     "key_learnings": [
         "RFM analysis proved highly effective for churn prediction with Recency being the strongest single predictor",
-        "Class imbalance (50% churn rate) required SMOTE oversampling to achieve balanced precision-recall performance",
+        "Class imbalance (42% churn rate) required SMOTE oversampling to achieve balanced precision-recall performance",
         "Temporal feature engineering (purchase velocity, trend analysis) significantly improved model discriminative power",
         "Ensemble methods (Random Forest) outperformed linear models due to complex non-linear customer behavior patterns",
         "Threshold tuning is critical - default 0.5 threshold yielded suboptimal business value compared to optimized threshold",
@@ -120,7 +120,7 @@
         "Streamlit enabled rapid prototyping of interactive prediction interface for business stakeholders"
     ],
     "challenges_faced": [
-        "High natural churn rate (50%) created severe class imbalance requiring advanced sampling techniques (SMOTE)",
+        "Natural churn rate (42%) required balanced sampling techniques (SMOTE) for optimal model performance",
         "No explicit churn labels required inference from purchase behavior patterns and time-based analysis",
         "Missing CustomerIDs in 20% of transactions (107,188 rows) necessitated aggressive data filtering",
         "Outlier detection balance - removing bulk buyers without losing legitimate high-value customers",
