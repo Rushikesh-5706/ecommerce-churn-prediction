@@ -1,0 +1,68 @@
+# Data files
+*.csv
+*.xlsx
+*.xls
+# data/raw/*     <-- Keep these in git for evaluation
+# data/processed/* <-- Keep these in git for evaluation
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Model files
+# *.pkl          <-- Keep these in git for evaluation
+*.h5
+*.joblib
+# models/*       <-- Keep these in git for evaluation
+!models/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints
+
+# Environment
+venv/
+env/
+ENV/
+.venv
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/*.log
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
