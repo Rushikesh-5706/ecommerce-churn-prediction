@@ -16,7 +16,7 @@ The Customer Churn Prediction System defines churn using a **90-day observation 
 - **Churned Customers**: 1,363 (42.42%)
 - **Active Customers**: 1,850 (57.58%)
 
-## Why 50% Churn Rate is Justified
+## Why 42% Churn Rate is Justified
 
 ### 1. **Dataset Characteristics: Online Gift Retail**
 
