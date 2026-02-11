@@ -195,10 +195,13 @@ def main():
                     'MinPrice': 1.0,
                     'MaxPrice': 50.0,
                     'AvgQuantityPerOrder': avg_basket_size,
-                    'RecencyScore': 3,
-                    'FrequencyScore': 3,
-                    'MonetaryScore': 3,
-                    'RFM_Score': 9,
+                    'AvgQuantityPerOrder': avg_basket_size,
+                    
+                    # Dynamic Scores based on Segment (Ensures consistency)
+                    'RecencyScore': 4 if segment == "Champions" else (3 if segment == "Loyal" else (2 if segment == "Potential" else 1)),
+                    'FrequencyScore': 4 if segment == "Champions" else (3 if segment == "Loyal" else (2 if segment == "Potential" else 1)),
+                    'MonetaryScore': 4 if segment == "Champions" else (3 if segment == "Loyal" else (2 if segment == "Potential" else 1)),
+                    'RFM_Score': 12 if segment == "Champions" else (9 if segment == "Loyal" else (6 if segment == "Potential" else 3)),
                     
                     # Missing Interaction/Trend Features (Crucial for correct prediction)
                     'FrequencyTrend': 1.0,  # Assume stable behavior
