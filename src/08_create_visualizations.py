@@ -20,6 +20,7 @@ from sklearn.metrics import (
     confusion_matrix, classification_report
 )
 from sklearn.model_selection import learning_curve
+from scipy import stats
 import json
 import os
 
@@ -214,6 +215,121 @@ def create_churn_distribution():
     plt.close()
     print("✓ Saved to visualizations/06_churn_analysis.png")
 
+def ensure_eda_dir():
+    """Ensure EDA directory exists"""
+    os.makedirs('visualizations/eda', exist_ok=True)
+
+
+def create_recency_plot(df):
+    """Create Recency Distribution Check"""
+    print("Creating Recency Plot...")
+    plt.figure(figsize=(10, 6))
+    
+    sns.boxplot(x='Churn', y='Recency', data=df, palette=['#2ecc71', '#e74c3c'])
+    plt.title('Recency Distribution by Churn Status', fontsize=14, fontweight='bold')
+    plt.xlabel('Churn Status (0=Active, 1=Churned)', fontsize=12)
+    plt.ylabel('Recency (Days since last purchase)', fontsize=12)
+    plt.grid(True, alpha=0.3)
+    
+    ensure_eda_dir()
+    plt.savefig('visualizations/eda/06_recency_by_churn.png', dpi=300, bbox_inches='tight')
+    plt.close()
+    print("✓ Saved to visualizations/eda/06_recency_by_churn.png")
+
+def create_frequency_plot(df):
+    """Create Frequency Distribution Check"""
+    print("Creating Frequency Plot...")
+    
+    # Cap outliers for better visualization if needed, but boxplot handles them well
+    plt.figure(figsize=(10, 6))
+    sns.boxplot(x='Churn', y='Frequency', data=df, palette=['#2ecc71', '#e74c3c'])
+    plt.yscale('log') # Log scale often helps with frequency/monetary data
+    plt.title('Frequency Distribution by Churn Status (Log Scale)', fontsize=14, fontweight='bold')
+    plt.xlabel('Churn Status (0=Active, 1=Churned)', fontsize=12)
+    plt.ylabel('Frequency (Number of purchases)', fontsize=12)
+    plt.grid(True, alpha=0.3)
+    
+    ensure_eda_dir()
+    plt.savefig('visualizations/eda/07_frequency_by_churn.png', dpi=300, bbox_inches='tight')
+    plt.close()
+    print("✓ Saved to visualizations/eda/07_frequency_by_churn.png")
+    
+def create_monetary_plot(df):
+    """Create Monetary Distribution Check"""
+    print("Creating Monetary Plot...")
+    
+    plt.figure(figsize=(10, 6))
+    sns.boxplot(x='Churn', y='TotalSpent', data=df, palette=['#2ecc71', '#e74c3c'])
+    plt.yscale('log')
+    plt.title('Monetary Value Distribution by Churn Status (Log Scale)', fontsize=14, fontweight='bold')
+    plt.xlabel('Churn Status (0=Active, 1=Churned)', fontsize=12)
+    plt.ylabel('Total Spent ($)', fontsize=12)
+    plt.grid(True, alpha=0.3)
+    
+    ensure_eda_dir()
+    plt.savefig('visualizations/eda/08_monetary_by_churn.png', dpi=300, bbox_inches='tight')
+    plt.close()
+    print("✓ Saved to visualizations/eda/08_monetary_by_churn.png")
+
+def create_statistical_tests(df):
+    """Create Statistical Significance Visualization"""
+    print("Creating Statistical Test Visualization...")
+    
+    features = ['Recency', 'Frequency', 'TotalSpent', 'AvgOrderValue', 'UniqueProducts']
+    p_values = []
+    
+    for feature in features:
+        churned = df[df['Churn'] == 1][feature]
+        active = df[df['Churn'] == 0][feature]
+        
+        # Perform t-test (independent samples)
+        t_stat, p_val = stats.ttest_ind(churned, active, equal_var=False)
+        p_values.append(p_val)
+    
+    # Create DataFrame for plotting
+    stats_df = pd.DataFrame({
+        'Feature': features,
+        'P-Value': p_values
+    })
+    
+    # Sort by significance (p-value, ascending)
+    stats_df = stats_df.sort_values('P-Value')
+    
+    plt.figure(figsize=(12, 6))
+    
+    # Bar plot of -log10(p-value) to make small values visible and significant ones large
+    # Using -log10(p) is a common way to visualize significance (Manhattan plot style)
+    # But for simplicity, we can just plot the p-values and add a significance line at 0.05
+    
+    # Let's plot 1 - p_value to show "Confidence" or just bar chart of p-values
+    # Better yet: Bar chart of p-values with a red line at 0.05
+    
+    bars = plt.bar(stats_df['Feature'], stats_df['P-Value'], color='skyblue')
+    
+    # Highlight significant features
+    for i, bar in enumerate(bars):
+        if stats_df.iloc[i]['P-Value'] < 0.05:
+            bar.set_color('#2ecc71') # Green for significant
+        else:
+            bar.set_color('#95a5a6') # Grey for not significant
+            
+    plt.axhline(y=0.05, color='r', linestyle='--', label='Significance Level (Alpha = 0.05)')
+    
+    plt.title('Statistical Significance of Features (T-Test P-Values)', fontsize=14, fontweight='bold')
+    plt.ylabel('P-Value', fontsize=12)
+    plt.xlabel('Feature', fontsize=12)
+    plt.legend()
+    plt.grid(True, alpha=0.3, axis='y')
+    
+    # Add value labels
+    for i, v in enumerate(stats_df['P-Value']):
+        plt.text(i, v + 0.01, f'{v:.4f}', ha='center', fontsize=10)
+        
+    ensure_eda_dir()
+    plt.savefig('visualizations/eda/09_statistical_tests.png', dpi=300, bbox_inches='tight')
+    plt.close()
+    print("✓ Saved to visualizations/eda/09_statistical_tests.png")
+
 def main():
     """Main execution"""
     print("\n" + "="*60)
@@ -230,11 +346,18 @@ def main():
     create_feature_importance(model, X_train)
     create_model_comparison()
     create_churn_distribution()
+
+    # Load full dataset for RFM and Stats analysis
+    df = pd.read_csv('data/processed/customer_features.csv')
+    create_recency_plot(df)
+    create_frequency_plot(df)
+    create_monetary_plot(df)
+    create_statistical_tests(df)
     
     print("\n" + "="*60)
     print("VISUALIZATION CREATION COMPLETED")
     print("="*60)
-    print("\n✓ All 6 visualizations saved to visualizations/ directory")
+    print("\n✓ 10 visualizations saved to visualizations/ directory (including eda/ subdirectory)")
     print("\nFiles created:")
     print("  1. 01_roc_curve.png")
     print("  2. 02_precision_recall_curve.png")
@@ -242,6 +365,10 @@ def main():
     print("  4. 04_feature_importance.png")
     print("  5. 05_model_comparison.png")
     print("  6. 06_churn_analysis.png")
+    print("  7. eda/06_recency_by_churn.png")
+    print("  8. eda/07_frequency_by_churn.png")
+    print("  9. eda/08_monetary_by_churn.png")
+    print("  10. eda/09_statistical_tests.png")
     print("="*60 + "\n")
 
 if __name__ == "__main__":
