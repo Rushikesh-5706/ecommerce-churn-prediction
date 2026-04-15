@@ -43,7 +43,7 @@
         "selection_rationale": "Best balance of ROC-AUC (0.751 meets >0.75 threshold) and precision (0.711 meets >0.70 threshold). Recall of 0.690 exceeds 0.65 minimum, demonstrating effective churn prediction capability with strong precision-recall balance."
     },
     "features": {
-        "total_features": 36,
+        "total_features": 39,
         "feature_categories": {
             "rfm": 6,
             "behavioral": 8,
@@ -92,7 +92,7 @@
     "challenges_faced": [
         "Natural churn rate (42%) required balanced sampling techniques (SMOTE) for optimal model performance",
         "No explicit churn labels required inference from purchase behavior patterns and time-based analysis",
-        "Missing CustomerIDs in 20% of transactions (107,188 rows) necessitated aggressive data filtering",
+        "Missing CustomerIDs in 20% of transactions (107,927 rows) necessitated aggressive data filtering",
         "Outlier detection balance - removing bulk buyers without losing legitimate high-value customers",
         "Feature explosion risk - narrowed 100+ candidate features to 36 high-signal features through correlation analysis",
         "Model deployment constraints - ensuring all models <100MB for Streamlit Cloud free tier",

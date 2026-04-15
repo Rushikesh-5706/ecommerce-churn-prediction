@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document provides comprehensive documentation for all **36 engineered features** used in the customer churn prediction model. Features are derived from transactional data and organized into 5 categories: RFM, Behavioral, Temporal, Product, and Derived.
+This document provides comprehensive documentation for all **39 engineered features** used in the customer churn prediction model. Features are derived from transactional data and organized into 5 categories: RFM, Behavioral, Temporal, Product, and Derived.
 
 ---
 
@@ -649,7 +649,7 @@ python src/03_feature_engineering.py
 **Outputs**:
 - `data/processed/customer_features.csv` (3,213 rows × 37 columns including Churn)
 - `data/processed/feature_info.json` (this data dictionary in JSON)
-- `data/processed/feature_names.json` (list of 36 feature names)
+- `data/processed/feature_names.json` (list of 39 feature names)
 
 **Runtime**: ~15 seconds
 

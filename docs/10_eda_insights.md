@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This document summarizes key insights from exploratory data analysis of 3,213 customers with 29 engineered features. The analysis reveals strong predictive signals in RFM metrics, customer lifecycle patterns, and behavioral features that will inform model development.
+This document summarizes key insights from exploratory data analysis of 3,213 customers with 39 engineered features. The analysis reveals strong predictive signals in RFM metrics, customer lifecycle patterns, and behavioral features that will inform model development.
 
 **Key Finding**: Recency, recent purchase activity (30/60/90 days), and RFM scores show high statistical significance (p < 0.001) in differentiating churned vs. active customers.
 

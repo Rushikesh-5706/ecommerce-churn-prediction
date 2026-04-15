@@ -83,7 +83,7 @@ upper_bound = Q3 + 1.5 * IQR
 - **Observation Period**: 2010-09-10 to 2010-12-09 (90 days)
 - **Churn Definition**: Purchased in training BUT NOT in observation
 
-**Feature Categories** (29 features total):
+**Feature Categories** (39 features total):
 
 | Category | Features | Count |
 |----------|----------|-------|
@@ -112,7 +112,7 @@ upper_bound = Q3 + 1.5 * IQR
 - `data/processed/X_test.csv` (482 samples)
 - `data/processed/y_train.csv`, `y_val.csv`, `y_test.csv`
 - `models/scaler.pkl` (StandardScaler instance)
-- `data/processed/feature_names.json` (33 features post-encoding)
+- `data/processed/feature_names.json` (39 features post-encoding)
 
 ---
 
@@ -193,7 +193,7 @@ def load_scaler():
 def predict_single(customer_data: dict) -> dict:
     \"\"\"
     Args:
-        customer_data: Dict with 29 features
+        customer_data: Dict with 39 features
     
     Returns:
         {
@@ -246,7 +246,7 @@ streamlit_app.py
 │   └── Navigation Guide
 │
 ├── Single Prediction (input form)
-│   ├── Feature Input Widgets (33 features)
+│   ├── Feature Input Widgets (39 features)
 │   ├── Predict Button
 │   ├── Result Display (probability, label, recommendation)
 │   └── Explanation (top 3 features contributing to prediction)
@@ -354,7 +354,7 @@ docker run -p 8501:8501 churn-prediction
         ↓
 ┌───────────────┐
 │  Feature Eng  │  Aggregate to customer-level
-└───────┬───────┘  Output: 3,213 customers × 29 features
+└───────┬───────┘  Output: 3,213 customers × 39 features
         ↓
 ┌───────────────┐
 │  Model Prep   │  Split, scale, one-hot encode
@@ -476,7 +476,7 @@ ls -la models/best_model.pkl
 
 **Error**:
 ```
-ValueError: X has 29 features, but StandardScaler expected 33
+ValueError: X has 36 features, but StandardScaler expected 39
 ```
 
 **Cause**: Input features don't match training features (missing one-hot encoding)

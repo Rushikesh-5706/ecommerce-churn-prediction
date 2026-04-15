@@ -112,7 +112,7 @@ def main():
         - 🔮 **Single Prediction**: Predict churn for individual customers
         - 📊 **Batch Prediction**: Upload CSV file for bulk predictions
         - 📈 **Dashboard**: Interactive visualizations and insights
-        - 🎯 **High Accuracy**: Trained on 3,213 customers with 33 features
+        - 🎯 **High Accuracy**: Trained on 3,213 customers with 39 features
         
         **Model Performance:**
         - **ROC-AUC Score**: 0.7510
@@ -123,7 +123,7 @@ def main():
         
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.metric("Total Customers Analyzed", "2,249")
+            st.metric("Total Customers Analyzed", "3,213")
         with col2:
             st.metric("Features Used", "39")
         with col3:
@@ -414,7 +414,7 @@ def main():
         
         #### How It Works
         1. **Data Collection**: Historical customer transaction data (2009-2010)
-        2. **Feature Engineering**: 33 features created from RFM analysis, behavioral patterns, and temporal data
+        2. **Feature Engineering**: 39 features created from RFM analysis, behavioral patterns, and temporal data
         3. **Model Training**: Ensemble of Random Forest, Gradient Boosting, and Neural Network
         4. **Prediction**: Real-time churn probability calculation
         
@@ -429,7 +429,7 @@ def main():
         - **Training Customers**: 2,249
         - **Validation Customers**: 482
         - **Test Customers**: 482
-        - **Features**: 33
+        - **Features**: 39
         - **Churn Rate**: 42.42%
         
         #### Technology Stack

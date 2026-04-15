@@ -264,7 +264,7 @@ def create_presentation():
     
     elements.append(Spacer(1, 0.15*inch))
     elements.append(Paragraph("<b>Data Quality Challenges Addressed</b>", subheading_style))
-    elements.append(Paragraph("❌ <b>Missing CustomerIDs:</b> 107,188 rows (20% of dataset) lacked customer identifiers", bullet_style))
+    elements.append(Paragraph("❌ <b>Missing CustomerIDs:</b> 107,927 rows (20% of dataset) lacked customer identifiers", bullet_style))
     elements.append(Paragraph("❌ <b>High Churn Rate:</b> 42.42% natural churn creates severe class imbalance", bullet_style))
     elements.append(Paragraph("❌ <b>No Explicit Labels:</b> Churn must be inferred from purchase behavior patterns", bullet_style))
     elements.append(Paragraph("❌ <b>Order Cancellations:</b> 9,288 return transactions required special handling", bullet_style))
@@ -281,7 +281,7 @@ def create_presentation():
     cell_style = make_table_cell_style(8)
     cleaning_data = [
         ['Challenge', 'Impact', 'Solution Applied', 'Outcome'],
-        [Paragraph('Missing CustomerIDs', cell_style), Paragraph('107,188 unusable rows', cell_style), Paragraph('Removed all null customer records', cell_style), Paragraph('342,273 valid transactions', cell_style)],
+        [Paragraph('Missing CustomerIDs', cell_style), Paragraph('107,927 unusable rows', cell_style), Paragraph('Removed all null customer records', cell_style), Paragraph('342,273 valid transactions', cell_style)],
         [Paragraph('Cancelled Orders', cell_style), Paragraph('9,288 negative quantities', cell_style), Paragraph('Excluded all return transactions', cell_style), Paragraph('Clean purchase history', cell_style)],
         [Paragraph('Statistical Outliers', cell_style), Paragraph('Bulk buyers skewing distributions', cell_style), Paragraph('Removed top 1% extreme values', cell_style), Paragraph('Normalized distribution', cell_style)],
         [Paragraph('Invalid Prices', cell_style), Paragraph('Negative/zero price entries', cell_style), Paragraph('Applied strict price validation', cell_style), Paragraph('100% valid pricing data', cell_style)]

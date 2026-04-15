@@ -9,7 +9,7 @@
         "end": "2010-12-09",
         "days": 90
     },
-    "total_features": 36,
+    "total_features": 39,
     "churn_rate": 0.4242,
     "total_customers": 3213,
     "feature_categories": {

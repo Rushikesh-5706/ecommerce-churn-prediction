@@ -74,7 +74,7 @@
 
 | Challenge | Impact | Solution | Result |
 |:----------|:-------|:---------|:-------|
-| Missing CustomerIDs | 107,188 unusable rows | Removed all null IDs | 342,273 valid transactions |
+| Missing CustomerIDs | 107,927 unusable rows | Removed all null IDs | 342,273 valid transactions |
 | Cancelled Orders | 9,288 negative quantities | Excluded returns | Clean purchase history |
 | Outliers | Bulk buyers skewing stats | Removed top 1% | Balanced distribution |
 | Invalid Prices | Negative/zero values | Price validation | 100% valid prices |
@@ -106,7 +106,7 @@
 - **Churn**: No purchase in next 65 days (optimized observation window)
 - **Churn Rate**: 42.42% (balanced for model training)
 
-**Total Features**: 29 engineered customer-level attributes
+**Total Features**: 39 engineered customer-level attributes
 
 ---
 
