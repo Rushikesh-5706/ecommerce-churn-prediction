@@ -190,31 +190,28 @@ def main():
                     'Purchases_Last30Days': purchases_last_30,
                     'Purchases_Last60Days': purchases_last_30 * 2,
                     'Purchases_Last90Days': purchases_last_30 * 3,
+                    'Spend_Last30Days': purchases_last_30 * avg_order_value,
+                    'Spend_Last90Days': (purchases_last_30 * 3) * avg_order_value,
+                    'FrequencyTrend': 1.0,
+                    'SpendTrend': 1.0,
+                    'Freq_x_Spend': frequency * total_spent,
+                    'Active_Freq': frequency / (recency + 1),
+                    'Spend_per_Item': total_spent / (total_items + 1) if total_items > 0 else 0,
                     'ProductDiversityScore': unique_products / total_items if total_items > 0 else 0,
-                    'AvgPricePreference': avg_order_value / avg_basket_size if avg_basket_size > 0 else 0,
-                    'StdPricePreference': 5.0,
-                    'MinPrice': 1.0,
-                    'MaxPrice': 50.0,
+                    'AvgUnitPricePreference': avg_order_value / avg_basket_size if avg_basket_size > 0 else 0,
+                    'StdUnitPricePreference': 5.0,
+                    'MinUnitPrice': 1.0,
+                    'MaxUnitPrice': 50.0,
                     'AvgQuantityPerOrder': avg_basket_size,
-                    'AvgQuantityPerOrder': avg_basket_size,
-                    
-                    # Dynamic Scores based on Segment (Ensures consistency)
                     'RecencyScore': 4 if segment == "Champions" else (3 if segment == "Loyal" else (2 if segment == "Potential" else 1)),
                     'FrequencyScore': 4 if segment == "Champions" else (3 if segment == "Loyal" else (2 if segment == "Potential" else 1)),
                     'MonetaryScore': 4 if segment == "Champions" else (3 if segment == "Loyal" else (2 if segment == "Potential" else 1)),
                     'RFM_Score': 12 if segment == "Champions" else (9 if segment == "Loyal" else (6 if segment == "Potential" else 3)),
-                    
-                    # Missing Interaction/Trend Features (Crucial for correct prediction)
-                    'FrequencyTrend': 1.0,  # Assume stable behavior
-                    'SpendTrend': 1.0,      # Assume stable spending
-                    'Freq_x_Spend': frequency * total_spent,
-                    'Active_Freq': frequency / (recency + 1),
-                    'Spend_per_Item': total_spent / (total_items + 1) if total_items > 0 else 0,
                 }
                 
-                # Add segment one-hot encoding
-                for seg in ["Champions", "Loyal", "Potential", "At Risk", "Lost"]:
-                    customer_data[f'Segment_{seg}'] = 1 if seg == segment else 0
+                # Add segment one-hot encoding (matching training exactly, drop_first='At Risk' implied)
+                for seg in ["Champions", "Loyal", "Potential", "Lost"]:
+                    customer_data[f'CustomerSegment_{seg}'] = 1 if seg == segment else 0
                 
                 # Predict
                 prediction, probability = predict_churn(customer_data, model, scaler, feature_names)
