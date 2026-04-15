@@ -131,7 +131,7 @@ X_train_balanced, y_train_balanced = smote.fit_resample(X_train, y_train)
 ```
 
 **Result**:
-- Original training: 2,249 samples (50.1% churn)
+- Original training: 2,249 samples (42.42% churn)
 - Balanced training: 2,254 samples (50.0% churn)
 - Improvement: +0.02-0.03 ROC-AUC across all models
 

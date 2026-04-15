@@ -128,7 +128,7 @@
 
 **Selection Criteria**:
 - ✅ Best ROC-AUC (meets 0.75 threshold)
-- ✅ Highest Precision (71.76% > 70% target)
+- ✅ Highest Precision (71.10% > 70% target)
 - ✅ Strong Recall (69.00%)
 - ✅ Interpretable (feature importance)
 
@@ -143,10 +143,10 @@
 | Metric | Value | Target | Status |
 |:-------|:------|:-------|:-------|
 | **ROC-AUC** | 0.7510 | ≥ 0.75 | ✅ Met |
-| **Precision** | 0.7176 (71.76%) | ≥ 0.70 | ✅ Exceeded |
-| **Recall** | 0.6900 (69.0%) | ≥ 0.65 | ✅ Met |
-| **F1-Score** | 0.6769 (67.69%) | - | Strong |
-| **Accuracy** | 67.7% | - | Balanced |
+| **Precision** | 0.7110 (71.10%) | ≥ 0.70 | ✅ Exceeded |
+| **Recall** | 0.6900 (69.0%) | ≥ 0.65 | ✅ Exceeded |
+| **F1-Score** | 0.7002 (70.02%) | - | Strong |
+| **Accuracy** | 70.3% | - | Balanced |
 
 **Visualizations**:
 
@@ -155,8 +155,8 @@
 ![Confusion Matrix](visualizations/03_confusion_matrix.png)
 
 **Key Insights**:
-- Model correctly identifies 64% of churners (Recall)
-- 72% of predicted churners are true positives (Precision)
+- Model correctly identifies 69% of churners (Recall)
+- 71% of predicted churners are true positives (Precision)
 - Strong discriminative ability (AUC 0.751)
 
 ---
@@ -175,7 +175,7 @@
 | 2 | Monetary | 0.156 | Total spend indicates customer value |
 | 3 | Frequency | 0.142 | Purchase frequency shows engagement |
 | 4 | RecencyTrend | 0.095 | Increasing gaps = warning sign |
-| 5 | DaysSinceFirst | 0.073 | Customer age/lifecycle stage |
+| 5 | DaysSinceFirst | 0.073 | Customer lifecycle stage indicator |
 
 **Actionable Insights**:
 - Customers inactive >65 days = High churn risk
@@ -300,7 +300,7 @@
 
 **Final Metrics Summary**:
 - ✅ ROC-AUC: **0.7510** (Target: 0.75)
-- ✅ Precision: **71.76%** (Target: 70%)
+- ✅ Precision: **71.10%** (Target: 70%)
 - ✅ Recall: **69.00%** (Target: 65%)
 - ✅ Deployment: **Active**
 

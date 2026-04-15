@@ -21,7 +21,7 @@ After training and evaluating 5 machine learning models, **Random Forest (with S
    - **False Positive** (predict churn, but customer active): Wastes retention budget targeting customers who would stay anyway (£50-100 per unnecessary campaign)
    - **False Negative** (predict active, but customer churns): Misses opportunity, but customer was likely low-engagement already (£15-30 average value)
   
-2. **Precision Optimization**: 71.76% precision means **7 out of 10 predicted churners are truly churning**. This ensures retention campaigns are highly targeted and cost-effective.
+2. **Precision Optimization**: 71.10% precision means **7 out of 10 predicted churners are truly churning**. This ensures retention campaigns are highly targeted and cost-effective.
 
 3. **Threshold Tuning Trade-off**:
    - We could increase recall to 68% by lowering decision threshold to 0.42
@@ -53,7 +53,7 @@ After training and evaluating 5 machine learning models, **Random Forest (with S
 
 ### Key Observations
 
-1. **Random Forest leads in ROC-AUC** (0.7307), the primary evaluation metric
+1. **Random Forest leads in ROC-AUC** (0.7510), the primary evaluation metric
 2. **Neural Network has highest recall** (69.31%) but lower precision
 3. **All models benefit from SMOTE** for class imbalance handling
 4. **Decision Tree underperforms** significantly (0.6821 ROC-AUC)
@@ -162,7 +162,7 @@ After training and evaluating 5 machine learning models, **Random Forest (with S
 - Single metric for model comparison
 - Harmonic mean prevents one metric dominating
 
-**Achieved**: 0.6311 (Random Forest best)
+**Achieved**: 0.7002 (Random Forest best)
 
 ### Tertiary Metrics: Precision & Recall (Weight: 20%)
 **Business Context**:
@@ -170,8 +170,8 @@ After training and evaluating 5 machine learning models, **Random Forest (with S
 - **Recall** matters: Missing a churner = lost revenue (avg £1,150 LTV)
 
 **Trade-off Decision**:
-- Prioritized recall slightly (67% vs 59% precision)
-- Better to retain extra 8% of churners at cost of some false positives
+- Balanced approach: Recall 69.0%, Precision 71.1%
+- Catch majority of churners while keeping false positive rate manageable
 
 ---
 
@@ -183,8 +183,8 @@ After training and evaluating 5 machine learning models, **Random Forest (with S
 - **Recall**: **0.6900** (Target: ≥ 0.65) - ✅ Achieved
 
 ### Note on Accuracy vs. Recall
-The model yields an accuracy of **67.7%**. While higher accuracy is possible by biasing the model towards the majority class (active customers), this would result in missing actual churners. 
-**Business Decision**: We explicitly accepted a slightly lower overall accuracy to maximize **Recall (75%)**. 
+The model yields an accuracy of **70.30%**. While higher accuracy is possible by biasing the model towards the majority class (active customers), this would result in missing actual churners. 
+**Business Decision**: We explicitly accepted a slightly lower overall accuracy to maximize **Recall (69.0%)**. 
 *Why?* It is more profitable to intervene with a retention offer for a false positive (cost: small discount) than to lose a customer completely (cost: entire LTV). Verification confirms this strategy maximizes ROI.
 
 ---
@@ -217,7 +217,7 @@ The model yields an accuracy of **67.7%**. While higher accuracy is possible by 
    
 3. **Class Imbalance**
    - Even with SMOTE, minority class learning is harder
-   - Precision suffers (59%) due to imbalance
+    - Precision can suffer due to imbalance, though our tuned RF achieves 71.1%
 
 ### What Would Improve Performance
 
@@ -245,8 +245,8 @@ The model yields an accuracy of **67.7%**. While higher accuracy is possible by 
    - "Recency # 1 driver" → focus on reactivation campaigns
    
 2. **Cost-Effective**
-   - Precision (59%) means 41% of retention efforts are wasted
-   - But recall (67%) captures majority of revenue at risk
+    - Precision (71.1%) means ~29% of retention efforts target non-churners
+    - But recall (69.0%) captures majority of revenue at risk
    - **ROI Positive**: Saving £1,150 LTV justifies £50 retention cost even with false positives
 
 3. **Scalable**

@@ -420,7 +420,7 @@ def main():
         
         #### Model Performance
         - **ROC-AUC Score**: 0.7510
-        - **Precision**: 71.76%
+        - **Precision**: 71.10%
         - **Recall**: 69.00%
         - **F1-Score**: 70.00%
         - **Accuracy**: 70.3%

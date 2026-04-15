@@ -417,10 +417,10 @@ def create_presentation():
     metrics_data = [
         ['Metric', 'Achieved Value', 'Target Threshold', 'Status'],
         ['ROC-AUC', '0.7510', '≥ 0.75', '✅ Target Met'],
-        ['Precision', '71.76%', '≥ 70%', '✅ Exceeded'],
-        ['Recall', '64.05%', '≥ 65%', '✅ Near Target'],
-        ['F1-Score', '67.69%', '-', 'Strong Balance'],
-        ['Accuracy', '67.7%', '-', 'Balanced Performance']
+        ['Precision', '71.10%', '≥ 70%', '✅ Exceeded'],
+        ['Recall', '69.00%', '≥ 65%', '✅ Exceeded'],
+        ['F1-Score', '70.02%', '-', 'Strong Balance'],
+        ['Accuracy', '70.3%', '-', 'Balanced Performance']
     ]
     metrics_table = Table(metrics_data, colWidths=[1.7*inch, 1.6*inch, 1.7*inch, 1.8*inch])
     metrics_table.setStyle(TableStyle([
@@ -477,7 +477,7 @@ def create_presentation():
         ['2', 'Monetary Value', '15.6%', 'Total customer lifetime spend indicates engagement level'],
         ['3', 'Frequency', '14.2%', 'Purchase frequency directly correlates with loyalty'],
         ['4', 'Recency Trend', '9.5%', 'Increasing gaps between purchases signal disengagement'],
-        ['5', 'Customer Age', '7.3%', 'Days since first purchase affects churn probability']
+        ['5', 'CustomerLifetimeDays', '7.3%', 'Days since first purchase affects churn probability']
     ]
     importance_table = Table(importance_data, colWidths=[0.6*inch, 1.5*inch, 1.1*inch, 3.6*inch])
     importance_table.setStyle(TableStyle([
@@ -669,8 +669,8 @@ def create_presentation():
     summary_data = [
         [Paragraph("<b>Project Success Metrics - Final Summary</b>", make_subheading_style()), ''],
         ['ROC-AUC Score', '0.7510 (Target: ≥0.75) ✅'],
-        ['Precision', '71.76% (Target: ≥70%) ✅'],
-        ['Recall', '64.05% (Target: ≥65%) ✅'],
+        ['Precision', '71.10% (Target: ≥70%) ✅'],
+        ['Recall', '69.00% (Target: ≥65%) ✅'],
         ['Deployment Status', 'Production Active ✅'],
         ['Projected Annual ROI', '1,629% (£167K revenue protected)']
     ]

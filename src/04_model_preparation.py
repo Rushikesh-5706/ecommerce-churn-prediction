@@ -54,18 +54,28 @@ def prepare_model_data():
         X_temp, y_temp, test_size=0.50, stratify=y_temp, random_state=42
     )
     
-    # 4. Scaling
-    # Scale only numerical features (excluding binary encoded ones if desired, 
-    # but standard practice often scales all for models like NN/LR)
+    # 4. Scaling - Apply ONLY to numerical features (NOT one-hot encoded)
     scaler = StandardScaler()
     
-    # Fit on TRAIN only
-    X_train_scaled = scaler.fit_transform(X_train)
-    # Transform Val and Test
-    X_val_scaled = scaler.transform(X_val)
-    X_test_scaled = scaler.transform(X_test)
+    # Identify categorical one-hot encoded columns
+    categorical_cols = [col for col in feature_names if col.startswith('CustomerSegment_')]
+    numerical_cols = [col for col in feature_names if col not in categorical_cols]
     
-    # Convert back to DataFrame for saving (optional, but good for inspection)
+    print(f"\nScaling Configuration:")
+    print(f"  Numerical features to scale: {len(numerical_cols)}")
+    print(f"  Categorical features (one-hot, NOT scaled): {len(categorical_cols)}")
+    
+    # Apply scaling to numerical features only (fit on TRAIN only)
+    X_train_scaled = X_train.copy()
+    X_train_scaled[numerical_cols] = scaler.fit_transform(X_train[numerical_cols])
+    
+    X_val_scaled = X_val.copy()
+    X_val_scaled[numerical_cols] = scaler.transform(X_val[numerical_cols])
+    
+    X_test_scaled = X_test.copy()
+    X_test_scaled[numerical_cols] = scaler.transform(X_test[numerical_cols])
+    
+    # Convert to DataFrame for saving
     X_train_df = pd.DataFrame(X_train_scaled, columns=feature_names)
     X_val_df = pd.DataFrame(X_val_scaled, columns=feature_names)
     X_test_df = pd.DataFrame(X_test_scaled, columns=feature_names)
