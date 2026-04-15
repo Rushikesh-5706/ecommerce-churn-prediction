@@ -422,11 +422,11 @@ def main():
         - **ROC-AUC Score**: 0.7510
         - **Precision**: 71.10%
         - **Recall**: 69.00%
-        - **F1-Score**: 70.00%
-        - **Accuracy**: 70.3%
+        - **F1-Score**: 70.02%
+        - **Accuracy**: 70.30%
         
         #### Dataset Statistics
-        - **Training Customers**: 2,249
+        - **Total Customers**: 3,213
         - **Validation Customers**: 482
         - **Test Customers**: 482
         - **Features**: 39
