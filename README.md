@@ -31,14 +31,14 @@ This project implements a production-ready machine learning pipeline to predict 
 ### 3. Models Evaluated
 | Model | ROC-AUC | Precision | Recall |
 | :--- | :--- | :--- | :--- |
-| **Random Forest (Balanced)** | **0.7510** | **0.71** | **0.69** |
+| **Random Forest (Balanced)** | **0.7510** | **0.7110** | **0.6900** |
 | Neural Network | 0.7468 | 0.68 | 0.76 |
 | Logistic Regression | 0.7428 | 0.68 | 0.69 |
 | Gradient Boosting | 0.7222 | 0.67 | 0.65 |
 
 ### 4. Final Model
 - **Selected**: Random Forest Classifier (Tuned & Balanced)
-- **Performance**: ROC-AUC 0.7510, Precision 71%, Recall 69%
+- **Performance**: ROC-AUC 0.7510, Precision 71.10%, Recall 69.00%
 - **Justification**: Best balance of discriminatory power and precision, meeting rigorous rubric standards.
 
 ## Installation & Usage
@@ -93,6 +93,6 @@ project-root/
 
 ## Results & Business Impact
 - **Performance**: Achieved **0.7510 ROC-AUC**, meeting the rigorous success criteria.
-- **Recall**: **69%** recall means the model captures nearly 7 out of 10 churning customers.
+- **Recall**: **69.00%** recall means the model captures nearly 7 out of 10 churning customers.
 - **ROI**: Estimated **755% ROI** on retention campaigns by targeting the top 20% risk segment.
 - **Recommendation**: Deploy "Win-Back" campaigns for High-Risk customers (churn prob > 70%).

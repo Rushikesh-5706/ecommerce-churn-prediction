@@ -8,8 +8,8 @@ After training and evaluating 5 machine learning models, **Random Forest (with S
 - **ROC-AUC**: 0.7510
 - **Precision**: 71.10%
 - **Recall**: 69.00%
-- **Accuracy**: 70.3%
-- **F1-Score**: 70.0%
+- **Accuracy**: 70.30%
+- **F1-Score**: 70.02%
 
 ### Precision-Recall Tradeoff Analysis
 
@@ -45,7 +45,7 @@ After training and evaluating 5 machine learning models, **Random Forest (with S
 
 | Model | ROC-AUC | Accuracy | Precision | Recall | F1-Score |
 |-------|---------|----------|-----------|--------|----------|
-| **Random Forest (SMOTE)** | **0.7510** | **0.703** | **0.7110** | **0.6900** | **0.7002** |
+| **Random Forest (SMOTE)** | **0.7510** | **0.7030** | **0.7110** | **0.6900** | **0.7002** |
 | Neural Network (SMOTE) | 0.7250 | 0.6535 | 0.5714 | **0.6931** | 0.6264 |
 | Gradient Boosting (SMOTE) | 0.7189 | 0.6556 | 0.5833 | 0.6238 | 0.6029 |
 | Logistic Regression (SMOTE) | 0.7182 | 0.6598 | 0.5812 | 0.6733 | 0.6239 |
@@ -184,7 +184,7 @@ After training and evaluating 5 machine learning models, **Random Forest (with S
 
 ### Note on Accuracy vs. Recall
 The model yields an accuracy of **70.30%**. While higher accuracy is possible by biasing the model towards the majority class (active customers), this would result in missing actual churners. 
-**Business Decision**: We explicitly accepted a slightly lower overall accuracy to maximize **Recall (69.0%)**. 
+**Business Decision**: We explicitly accepted a slightly lower overall accuracy to maximize **Recall (69.00%)**. 
 *Why?* It is more profitable to intervene with a retention offer for a false positive (cost: small discount) than to lose a customer completely (cost: entire LTV). Verification confirms this strategy maximizes ROI.
 
 ---

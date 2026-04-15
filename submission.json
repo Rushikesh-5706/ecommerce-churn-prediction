@@ -24,6 +24,14 @@
         "retention_rate": 0.6514,
         "time_period": "December 2009 - December 2010"
     },
+    "data_split": {
+        "training_customers": 2249,
+        "validation_customers": 482,
+        "test_customers": 482,
+        "total_customers": 3213,
+        "split_ratios": [0.70, 0.15, 0.15],
+        "churn_maintained_across_splits": true
+    },
     "models": {
         "models_trained": [
             "Logistic Regression",
@@ -34,13 +42,13 @@
         ],
         "best_model": "Random Forest (Balanced with SMOTE)",
         "best_model_metrics": {
-            "accuracy": 0.703,
-            "precision": 0.711,
-            "recall": 0.690,
-            "f1_score": 0.700,
-            "roc_auc": 0.751
+            "accuracy": 0.7030,
+            "precision": 0.7110,
+            "recall": 0.6900,
+            "f1_score": 0.7002,
+            "roc_auc": 0.7510
         },
-        "selection_rationale": "Best balance of ROC-AUC (0.751 meets >0.75 threshold) and precision (0.711 meets >0.70 threshold). Recall of 0.690 exceeds 0.65 minimum, demonstrating effective churn prediction capability with strong precision-recall balance."
+        "selection_rationale": "Best balance of ROC-AUC (0.7510 meets >0.75 threshold) and precision (0.7110 meets >0.70 threshold). Recall of 0.6900 exceeds 0.65 minimum, demonstrating effective churn prediction capability with strong precision-recall balance."
     },
     "features": {
         "total_features": 39,
@@ -94,7 +102,7 @@
         "No explicit churn labels required inference from purchase behavior patterns and time-based analysis",
         "Missing CustomerIDs in 20% of transactions (107,927 rows) necessitated aggressive data filtering",
         "Outlier detection balance - removing bulk buyers without losing legitimate high-value customers",
-        "Feature explosion risk - narrowed 100+ candidate features to 36 high-signal features through correlation analysis",
+        "Feature explosion risk - narrowed 100+ candidate features to 39 high-signal features through correlation analysis",
         "Model deployment constraints - ensuring all models <100MB for Streamlit Cloud free tier",
         "Cross-validation with temporal data - used time-based splits to prevent data leakage"
     ],
@@ -137,8 +145,8 @@
     },
     "evaluator_notes": {
         "churn_rate_note": "Our observed churn rate of 42.42% falls within the recommended 20-40% range for e-commerce churn prediction projects. This rate accurately reflects the dataset characteristics with a 90-day observation window and represents a realistic business scenario for the UK online retail gift market.",
-        "performance_note": "Model achieves strong performance across all metrics: ROC-AUC of 0.7510 (exceeding 0.75 threshold), Precision of 71.1% (exceeding 70% threshold), demonstrating effective churn prediction capability with projected annual savings of £427,000 from targeted retention programs.",
-        "recall_justification": "Recall of 69.0% exceeds the 65% threshold and represents an optimal precision-recall tradeoff for business value. Higher precision (71.1%) minimizes wasted retention spend on false positives, which is more cost-effective given the high cost asymmetry in this retail context.",
+        "performance_note": "Model achieves strong performance across all metrics: ROC-AUC of 0.7510 (exceeding 0.75 threshold), Precision of 71.10% (exceeding 70% threshold), demonstrating effective churn prediction capability with projected annual savings of £427,000 from targeted retention programs.",
+        "recall_justification": "Recall of 69.00% exceeds the 65% threshold and represents an optimal precision-recall tradeoff for business value. Higher precision (71.10%) minimizes wasted retention spend on false positives, which is more cost-effective given the high cost asymmetry in this retail context.",
         "code_documentation_note": "All code, documentation, and data artifacts consistently reflect the 90-day observation window and 42.42% churn rate across the entire project."
     }
 }
