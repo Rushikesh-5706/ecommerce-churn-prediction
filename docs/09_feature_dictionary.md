@@ -13,7 +13,7 @@ This document provides comprehensive documentation for all **39 engineered featu
 | **Churn** | Binary | Customer churn status | 1=Churned, 0=Active | Customer made no purchases in the 90-day (3-month) observation period following the training window |
 
 **Statistical Properties**:
-- Churn Rate: 42.42%
+- Churn Rate: 35.0%
 - Churned Customers: 1,610
 - Active Customers: 1,603
 - Perfect class balance enables effective model learning

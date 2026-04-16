@@ -32,50 +32,44 @@ def prepare_model_data():
     X = df.drop(['CustomerID', 'Churn'], axis=1)
     y = df['Churn']
     
-    # 2. Categorical Encoding
-    # Identify categorical columns
-    cat_cols = X.select_dtypes(include=['object', 'category']).columns
-    print(f"Categorical columns to encode: {list(cat_cols)}")
+    # 2. Categorical Encoding & 4. Scaling Combined
+    from sklearn.compose import ColumnTransformer
+    from sklearn.preprocessing import StandardScaler
     
-    # One-hot encode
-    X_encoded = pd.get_dummies(X, columns=cat_cols, drop_first=True)
+    # Identify numerical vs categorical features
+    numerical_features = [col for col in X.columns if col not in ['CustomerSegment', 'PreferredDay', 'PreferredHour']]
+    categorical_features = ['CustomerSegment'] if 'CustomerSegment' in X.columns else []
     
-    # Save feature names
+    # One-hot encode if needed
+    if categorical_features:
+        X_encoded = pd.get_dummies(X, columns=categorical_features, drop_first=True)
+    else:
+        X_encoded = X
+        
     feature_names = list(X_encoded.columns)
     
     # 3. Stratified Split
-    # First split: Train (70%) vs Temp (30%)
     X_train, X_temp, y_train, y_temp = train_test_split(
         X_encoded, y, test_size=0.30, stratify=y, random_state=42
     )
     
-    # Second split: Validation (15%) vs Test (15%)
     X_val, X_test, y_val, y_test = train_test_split(
         X_temp, y_temp, test_size=0.50, stratify=y_temp, random_state=42
     )
     
-    # 4. Scaling - Apply ONLY to numerical features (NOT one-hot encoded)
+    # Scale ONLY numerical features
+    numerical_cols_encoded = [col for col in feature_names 
+                              if not any(cat in col for cat in (categorical_features if categorical_features else []))]
+    
     scaler = StandardScaler()
-    
-    # Identify categorical one-hot encoded columns
-    categorical_cols = [col for col in feature_names if col.startswith('CustomerSegment_')]
-    numerical_cols = [col for col in feature_names if col not in categorical_cols]
-    
-    print(f"\nScaling Configuration:")
-    print(f"  Numerical features to scale: {len(numerical_cols)}")
-    print(f"  Categorical features (one-hot, NOT scaled): {len(categorical_cols)}")
-    
-    # Apply scaling to numerical features only (fit on TRAIN only)
     X_train_scaled = X_train.copy()
-    X_train_scaled[numerical_cols] = scaler.fit_transform(X_train[numerical_cols])
-    
     X_val_scaled = X_val.copy()
-    X_val_scaled[numerical_cols] = scaler.transform(X_val[numerical_cols])
-    
     X_test_scaled = X_test.copy()
-    X_test_scaled[numerical_cols] = scaler.transform(X_test[numerical_cols])
     
-    # Convert to DataFrame for saving
+    X_train_scaled[numerical_cols_encoded] = scaler.fit_transform(X_train[numerical_cols_encoded])
+    X_val_scaled[numerical_cols_encoded] = scaler.transform(X_val[numerical_cols_encoded])
+    X_test_scaled[numerical_cols_encoded] = scaler.transform(X_test[numerical_cols_encoded])
+    
     X_train_df = pd.DataFrame(X_train_scaled, columns=feature_names)
     X_val_df = pd.DataFrame(X_val_scaled, columns=feature_names)
     X_test_df = pd.DataFrame(X_test_scaled, columns=feature_names)

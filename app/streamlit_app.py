@@ -427,7 +427,8 @@ def main():
         - **Validation Customers**: 482
         - **Test Customers**: 482
         - **Features**: 39
-        - **Churn Rate**: 42.42%
+        - **Churn Rate**: 35.0%
+        - **Observation Window**: 90 days
         
         #### Technology Stack
         - **ML Framework**: Scikit-learn

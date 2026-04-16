@@ -29,36 +29,27 @@ class FeatureEngineer:
     Feature engineering pipeline for customer churn prediction
     """
     
-    def __init__(self, input_path='data/processed/cleaned_transactions.csv'):
-        """Initialize with cleaned data path"""
+    def __init__(self, input_path='data/processed/cleaned_transactions.csv', training_cutoff=None):
         self.input_path = input_path
         self.df = None
         self.training_data = None
         self.observation_data = None
         self.customer_features = None
         
-        # Critical dates for temporal split  
-        # Critical dates for temporal split  
-        self.training_cutoff = pd.Timestamp('2010-09-09')
+        import pandas as pd
+        temp_df = pd.read_csv(self.input_path, parse_dates=['InvoiceDate'])
+        self.observation_end = temp_df['InvoiceDate'].max()
         self.observation_days = 90
-        self.observation_end = self.training_cutoff + pd.Timedelta(days=self.observation_days)
         
-        self.feature_info = {
-            'training_period': {
-                'start': '2009-12-01',
-                'end': '2010-09-09',
-                'days': 283
-            },
-            'observation_period': {
-                'start': '2010-09-10',
-                'end': '2010-12-09',  # 90-day observation window
-                'days': 90
-            },
-            'total_features': 0,
-            'churn_rate': 0.0,
-            'total_customers': 0
-        }
-    
+        if training_cutoff is None:
+            temp_cutoff = self.observation_end - pd.Timedelta(days=self.observation_days)
+            self.training_cutoff = temp_cutoff - pd.Timedelta(days=12)
+        else:
+            self.training_cutoff = pd.Timestamp(training_cutoff)
+            
+        print(f"Training cutoff: {self.training_cutoff}")
+        print(f"Observation end: {self.observation_end}")
+
     def load_data(self):
         """Load cleaned transaction data"""
         logging.info("Loading cleaned transaction data...")

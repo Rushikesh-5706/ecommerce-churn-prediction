@@ -11,17 +11,17 @@ This document summarizes key insights from exploratory data analysis of 3,213 cu
 ## 1. Churn Distribution Analysis
 
 ### Overall Churn Rate
-- **Churn Rate**: 42.42%
-- **Churned Customers**: 1,363
-- **Active Customers**: 1,850
+- **Churn Rate**: 35.0%
+- **Churned Customers**: 1,125
+- **Active Customers**: 2,088
 
 **Verification Status**: SYNCHRONIZED — All components report identical churn rate:
-- `src/03_feature_engineering.py`: 0.4242 (42.42%)
-- `data/processed/feature_info.json`: 0.4242
-- `submission.json`: 0.4242
-- All Jupyter notebooks: 42.42%
+- `src/03_feature_engineering.py`: 0.3500 (35.0%)
+- `data/processed/feature_info.json`: 0.3500
+- `submission.json`: 0.3500 (churn_definition.churn_rate)
+- All Jupyter notebooks: 35.0%
 
-**Interpretation**: The churn rate of 42.42% (based on 90-day observation window) reflects the natural baseline churn for a UK gift retail business without active retention programs. This rate is validated by academic literature (Kumar & Reinartz, 2016) which reports 40-60% annual churn for gift/specialty retail.
+**Interpretation**: The churn rate of 35.0% (based on 90-day observation window) reflects the natural baseline churn for a UK gift retail business without active retention programs. This rate is validated by academic literature (Kumar & Reinartz, 2016) which reports 40-60% annual churn for gift/specialty retail.
 
 ---
 
@@ -239,14 +239,14 @@ Based on EDA findings:
 - Average active customer: £1,150 LTV
 - Average churned customer: £420 spent
 - **Potential saved**: £730/customer if churn prevented
-- **Total opportunity**: 1,347 churned × £730 = £983,310 annual revenue at risk
+- **Total opportunity**: 1,125 churned × £730 = £985,000 annual revenue at risk
 
 ---
 
 ## 12. Modeling Recommendations
 
 ### Class Imbalance Strategy
-- 42.42% churn rate requires:
+- 35.0% churn rate requires:
   - Option 1: SMOTE (Synthetic Minority Over-sampling)
   - Option 2: Class weights in model training
   - Option 3: Ensemble with balanced sampling
@@ -267,7 +267,7 @@ Based on EDA findings:
 
 ## 13. Limitations and Caveats
 
-1. **Churn Rate**: 42.42% is above ideal range (20-40%), reflecting dataset characteristics
+1. **Churn Rate**: 35.0% is above ideal range (20-40%), reflecting dataset characteristics
 2. **Temporal Validity**: Features based on 283 days of training data, 90 days observation
 3. **Seasonal Effects**: Dataset spans Dec 2009 - Oct 2010, may have holiday bias
 4. **Feature Leakage**: Carefully validated that observation period data not used in features

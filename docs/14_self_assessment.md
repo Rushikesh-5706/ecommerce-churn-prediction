@@ -29,7 +29,7 @@
 
 ## Challenges Overcome
 
-**Challenge**: High Churn Rate (42.42%) & Signal Noise
+**Challenge**: High Churn Rate (35.0%) & Signal Noise
 - **Solution**: Experimented with observation windows. Selected 90 days as it provides the most reliable 3-month observation period and aligns with quarterly business cycles.
 - **Learning**: Domain knowledge (retail cycles) is as important as algorithm selection.
 

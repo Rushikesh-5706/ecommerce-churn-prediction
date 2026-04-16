@@ -16,13 +16,13 @@
   - Used for: Final model evaluation ONLY (no tuning)
 
 ### Implementation
-- Stratified split to maintain churn ratio (42.42%) across all sets
+- Stratified split to maintain churn ratio (35.0%) across all sets
 - Location: src/04_model_preparation.py
 - Method: sklearn.model_selection.train_test_split with stratify=y
 
 ### Churn Distribution Across Splits
-- Training: 42.42% (953 churned / 2,249 total)
-- Validation: 42.42% (205 churned / 482 total) 
-- Test: 42.42% (205 churned / 482 total)
+- Training: 35.0% (787 churned / 2,249 total)
+- Validation: 35.0% (169 churned / 482 total) 
+- Test: 35.0% (169 churned / 482 total)
 
 **Verification**: All splits maintain identical churn rate ± 0.5%

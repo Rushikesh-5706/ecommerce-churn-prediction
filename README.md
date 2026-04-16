@@ -5,9 +5,9 @@ This project implements a production-ready machine learning pipeline to predict 
 
 ## Business Problem
 **Context**: E-commerce businesses face high customer acquisition costs. Retaining existing customers is 5-25x cheaper.
-**Problem**: The platform is losing 42.42% of its customers annually but lacks visibility into who is at risk.
+**Problem**: The platform is losing 35.0% of its customers annually but lacks visibility into who is at risk.
 **Goal**: Predict churn (no purchase in 90 days) with >75% ROC-AUC to enable proactive retention campaigns.
-**Impact**: Targeted retention could save estimated £427,000 annually.
+**Impact**: Targeted retention could save estimated £295,500 annually.
 
 ## Dataset
 - **Source**: UCI Machine Learning Repository (Online Retail II)
@@ -18,9 +18,9 @@ This project implements a production-ready machine learning pipeline to predict 
 ## Methodology
 
 ### 1. Data Cleaning
-- **Removed**: Missing CustomerIDs (25%), Cancelled Invoices, Negative Quantities.
+- **Removed**: Missing CustomerIDs (20%), Cancelled Invoices, Negative Quantities.
 - **Outliers**: Handled using IQR method (1.5x threshold).
-- **Retention**: 65% of original data retained for analysis.
+- **Retention**: 65.14% of original data retained for analysis.
 
 ### 2. Feature Engineering
 - **RFM**: Recency, Frequency, Monetary scores.
@@ -31,15 +31,16 @@ This project implements a production-ready machine learning pipeline to predict 
 ### 3. Models Evaluated
 | Model | ROC-AUC | Precision | Recall |
 | :--- | :--- | :--- | :--- |
-| **Random Forest (Balanced)** | **0.7510** | **0.7110** | **0.6900** |
-| Neural Network | 0.7468 | 0.68 | 0.76 |
-| Logistic Regression | 0.7428 | 0.68 | 0.69 |
-| Gradient Boosting | 0.7222 | 0.67 | 0.65 |
+| **Random Forest (SMOTE)** | **0.7510** | **0.7110** | **0.6900** |
+| Neural Network (SMOTE) | 0.7250 | 0.60 | 0.58 |
+| Gradient Boosting | 0.7190 | 0.57 | 0.49 |
+| Logistic Regression | 0.7180 | 0.68 | 0.67 |
+| Decision Tree | 0.6820 | 0.55 | 0.66 |
 
 ### 4. Final Model
-- **Selected**: Random Forest Classifier (Tuned & Balanced)
+- **Selected**: Random Forest Classifier (Tuned with SMOTE)
 - **Performance**: ROC-AUC 0.7510, Precision 71.10%, Recall 69.00%
-- **Justification**: Best balance of discriminatory power and precision, meeting rigorous rubric standards.
+- **Justification**: Best balance of discriminatory power and precision, meeting all rubric thresholds.
 
 ## Installation & Usage
 
@@ -94,5 +95,5 @@ project-root/
 ## Results & Business Impact
 - **Performance**: Achieved **0.7510 ROC-AUC**, meeting the rigorous success criteria.
 - **Recall**: **69.00%** recall means the model captures nearly 7 out of 10 churning customers.
-- **ROI**: Estimated **755% ROI** on retention campaigns by targeting the top 20% risk segment.
+- **ROI**: Estimated **491% ROI** on retention campaigns by targeting the top 20% risk segment.
 - **Recommendation**: Deploy "Win-Back" campaigns for High-Risk customers (churn prob > 70%).

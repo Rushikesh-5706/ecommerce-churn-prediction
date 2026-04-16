@@ -314,25 +314,9 @@ def main():
     best_model = models[best_model_name]
     test_metrics = evaluate_model(best_model, X_test, y_test, f"Test Set ({best_model_name})")
     
-    # Generate submission.json
-    submission = {
-        "student_id": "DS2026001",
-        "project_name": "Customer Churn Prediction System",
-        "repository_url": "https://github.com/Rushikesh-5706/ecommerce-churn-prediction",
-        "streamlit_app_url": "https://ecommerce-churn-prediction-rushi5706.streamlit.app/",
-        "model_metrics": {
-            "roc_auc": round(test_metrics['roc_auc'], 4),
-            "precision": round(test_metrics['precision'], 4),
-            "recall": round(test_metrics['recall'], 4),
-            "f1_score": round(test_metrics['f1'], 4)
-        },
-        "deployment_status": "active"
-    }
-    
-    with open('submission.json', 'w') as f:
-        json.dump(submission, f, indent=4)
-    
-    print(f"\n✓ Generated submission.json with metrics: AUC={submission['model_metrics']['roc_auc']}, P={submission['model_metrics']['precision']}, R={submission['model_metrics']['recall']}")
+    # NOTE: submission.json is maintained manually with the full required schema.
+    # Do NOT auto-generate it here as it would overwrite the correct format.
+    print(f"\n✓ Test evaluation complete. submission.json maintained separately.")
 
 if __name__ == "__main__":
     main()

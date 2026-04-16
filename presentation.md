@@ -37,7 +37,7 @@
 |:-------|:------|
 | Annual Revenue at Risk | £1.55M |
 | Target Customers | 3,213 |
-| Churn Rate | 42.42% |
+| Churn Rate | 35.0% |
 
 **Success Criteria**: ROC-AUC ≥ 0.75, Precision ≥ 70%
 
@@ -60,7 +60,7 @@
 
 **Key Challenges**:
 - ❌ **Missing CustomerIDs**: 20% of transactions (107k rows)
-- ❌ **High Churn Rate**: 42.42% (class imbalance)
+- ❌ **High Churn Rate**: 35.0% (class imbalance)
 - ❌ **No Explicit Labels**: Churn must be inferred from purchase patterns
 - ❌ **Cancellations**: 9,288 return transactions
 
@@ -104,7 +104,7 @@
 
 **Target Definition**: 
 - **Churn**: No purchase in next 65 days (optimized observation window)
-- **Churn Rate**: 42.42% (balanced for model training)
+- **Churn Rate**: 35.0% (balanced for model training)
 
 **Total Features**: 39 engineered customer-level attributes
 
@@ -244,7 +244,7 @@
 
 | Challenge | Impact | Solution | Outcome |
 |:----------|:-------|:---------|:--------|
-| High natural churn rate (42.42%) | Difficult to distinguish signal from noise | Optimized observation window to 90 days | Achieved target churn rate 42.42% |
+| High natural churn rate (35.0%) | Difficult to distinguish signal from noise | Optimized observation window to 90 days | Achieved target churn rate 35.0% |
 | Class imbalance | Models biased toward majority class | SMOTE oversampling | +2% ROC-AUC improvement |
 | No explicit labels | Cannot validate ground truth | Business logic validation with stakeholders | Aligned with domain expertise |
 | Feature engineering complexity | 100+ potential features | Iterative RFM + behavioral analysis | 29 high-signal features |

@@ -202,7 +202,7 @@ def create_presentation():
         ['Metric', 'Value'],
         ['Annual Revenue at Risk', '£1.58M'],
         ['Total Customers', '3,213'],
-        ['Natural Churn Rate', '42.42%'],
+        ['Natural Churn Rate', '35.0%'],
         ['Primary Stakeholders', 'Marketing, Customer Success, Finance'],
         ['Success Criteria', 'ROC-AUC ≥ 0.75, Precision ≥ 70%']
     ]
@@ -265,7 +265,7 @@ def create_presentation():
     elements.append(Spacer(1, 0.15*inch))
     elements.append(Paragraph("<b>Data Quality Challenges Addressed</b>", subheading_style))
     elements.append(Paragraph("❌ <b>Missing CustomerIDs:</b> 107,927 rows (20% of dataset) lacked customer identifiers", bullet_style))
-    elements.append(Paragraph("❌ <b>High Churn Rate:</b> 42.42% natural churn creates severe class imbalance", bullet_style))
+    elements.append(Paragraph("❌ <b>High Churn Rate:</b> 35.0% natural churn creates severe class imbalance", bullet_style))
     elements.append(Paragraph("❌ <b>No Explicit Labels:</b> Churn must be inferred from purchase behavior patterns", bullet_style))
     elements.append(Paragraph("❌ <b>Order Cancellations:</b> 9,288 return transactions required special handling", bullet_style))
     
@@ -353,7 +353,7 @@ def create_presentation():
     elements.append(Paragraph("• <b>Churn Definition:</b> Customer with no purchase activity in subsequent 90 days (optimized observation window)", bullet_style))
     elements.append(Paragraph("• <b>Total Engineered Features:</b> 36 customer-level predictive attributes", bullet_style))
     elements.append(Paragraph("• <b>Feature Selection:</b> Iterative correlation analysis and domain expertise validation", bullet_style))
-    elements.append(Paragraph("• <b>Churn Distribution:</b> 42.42% of customers classified as churned (within acceptable range)", bullet_style))
+    elements.append(Paragraph("• <b>Churn Distribution:</b> 35.0% of customers classified as churned (within acceptable range)", bullet_style))
     
     story.extend(elements)
     story.append(PageBreak())
@@ -596,7 +596,7 @@ def create_presentation():
     cell_style = make_table_cell_style(7.5)
     learnings_data = [
         ['Challenge Faced', 'Technical Impact', 'Solution Implemented', 'Result Achieved'],
-        [Paragraph('High natural churn (42%)', cell_style), Paragraph('Difficult signal separation from noise', cell_style), Paragraph('Optimized observation window to 65 days', cell_style), Paragraph('Churn rate stabilized at 41.92%', cell_style)],
+        [Paragraph('High natural churn (35%)', cell_style), Paragraph('Difficult signal separation from noise', cell_style), Paragraph('Optimized observation window to 65 days', cell_style), Paragraph('Churn rate stabilized at 35.0%', cell_style)],
         [Paragraph('Severe class imbalance', cell_style), Paragraph('Model bias toward majority class', cell_style), Paragraph('Applied SMOTE oversampling technique', cell_style), Paragraph('+2% ROC-AUC improvement', cell_style)],
         [Paragraph('No ground truth labels', cell_style), Paragraph('Unable to validate predictions', cell_style), Paragraph('Business logic validation with stakeholders', cell_style), Paragraph('Domain-aligned definition', cell_style)],
         [Paragraph('Feature complexity', cell_style), Paragraph('100+ potential candidate features', cell_style), Paragraph('Iterative RFM + correlation analysis', cell_style), Paragraph('Reduced to 29 high-signal features', cell_style)]
@@ -637,7 +637,7 @@ def create_presentation():
     elements.append(Paragraph("<b>Product Roadmap - Short-Term Priorities (3-6 Months)</b>", subheading_style))
     elements.append(Paragraph("1. <b>Real-Time Integration:</b> Deploy REST API for live churn scoring during active customer sessions", bullet_style))
     elements.append(Paragraph("2. <b>A/B Testing Framework:</b> Measure actual retention uplift from model-driven interventions in production", bullet_style))
-    elements.append(Paragraph("3. <b>Feature Enhancement:</b> Integrate customer demographics (age, location) and device data for improved accuracy", bullet_style))
+    elements.append(Paragraph("3. <b>Feature Enhancement:</b> Integrate customer demographics and device data for improved accuracy", bullet_style))
     elements.append(Paragraph("4. <b>Model Monitoring:</b> Implement automated drift detection and performance degradation alerts", bullet_style))
     
     elements.append(Spacer(1, 0.12*inch))

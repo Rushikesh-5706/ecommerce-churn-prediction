@@ -2,7 +2,7 @@
 Model Training Script with SMOTE for Class Imbalance
 
 This script trains all 5 models with SMOTE applied to training data
-to improve performance on imbalanced churn dataset (41.92% churn rate).
+to improve performance on imbalanced churn dataset (35.0% churn rate).
 
 Target: ROC-AUC ≥ 0.75
 """
